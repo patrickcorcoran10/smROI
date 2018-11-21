@@ -9,15 +9,16 @@ module.exports = function(app) {
 
     app.post("/api/dataPoints", function(req, res) {
         db.dataPoints.create({
-            data1: req.body.data1,
-            data2: req.body.data2,
-            data3: req.body.data3,
-            data4: req.body.data4,
-            data5: req.body.data5,
-            data6: req.body.data6,
-            data7: req.body.data7,
-            data8: req.body.data8,
-            data9: req.body.data9
+            prospectName: req.body.prospectName,
+            planSelect: req.body.planSelect,
+            totalUsers: req.body.totalUsers,
+            costPerEmployee: req.body.costPerEmployee,
+            dataCollection: req.body.dataCollection,
+            dataProcessing: req.body.dataProcessing,
+            datasecurity: req.body.dataSecurity,
+            emailVolume: req.body.emailVolume,
+            ROI: req.body.ROI,
+            savingsPerUser: req.body.savingsPerUser
         }).then(function(dbDataPoints) {
             res.json(dbDataPoints);
         });
