@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./NavBar.css";
 
 class NavBar extends Component {
+    
     render() {
         return(
             <div>
@@ -13,7 +14,7 @@ class NavBar extends Component {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
                         <li className="nav-item active">
-                        <p>smROI</p>
+                        <h5>{this.props.title}</h5>
                             {/* <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a> */}
                         </li>
                         <li className="nav-item">

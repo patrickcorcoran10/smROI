@@ -11,11 +11,11 @@ module.exports = function(app) {
         db.dataPoints.create({
             prospectName: req.body.prospectName,
             planSelect: req.body.planSelect,
-            totalUsers: req.body.totalUsers,
-            costPerEmployee: req.body.costPerEmployee,
+            numOfUsers: req.body.numOfUsers,
+            employeeCost: req.body.employeeCost,
             dataCollection: req.body.dataCollection,
             dataProcessing: req.body.dataProcessing,
-            datasecurity: req.body.dataSecurity,
+            dataSecurity: req.body.dataSecurity,
             emailVolume: req.body.emailVolume,
             ROI: req.body.ROI,
             savingsPerUser: req.body.savingsPerUser
