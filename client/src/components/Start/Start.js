@@ -37,8 +37,9 @@ class Start extends Component {
         const avgDataSecurityRisk = 1600000.00;
         const chanceOfDataBreach = .025;
         const avgEmailCost = 1800.00;
-        const ROI = 0;
-        const savings = 0;
+        
+
+        console.log(plan);
 
         
         // Data Collection Math
@@ -53,6 +54,14 @@ class Start extends Component {
         // Email Efficiency Math
         let emailEfficiencySavings = (users * avgEmailCost) * emailVolumeValue;
         console.log(emailEfficiencySavings);
+        // ROI and Savings Math
+        let yearlyCost = plan * users * 12;
+        console.log(yearlyCost);
+        let yearlySavings = (emailEfficiencySavings + dataSecuritySavings + dataProcessingSavings + dataCollectionSavings);
+        console.log(yearlySavings);
+        let ROI = parseFloat(yearlySavings/yearlyCost).toFixed(2);
+        let savings = parseFloat(yearlySavings/users).toFixed(2);
+        console.log(ROI)
         this.setState({
             prospectName: this.refs.name.value,
             planSelect: this.refs.planSelect.value,
@@ -190,11 +199,11 @@ class Start extends Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-4">
-                        <div className="roi">Return on Investment: {this.state.ROI}</div>
-                        <div className="savingsPerUser">Savings Per User: {this.state.savingsPerUser}</div>
+                    <div className="col-md-6">
+                        <div className="roi">Return on Investment: {this.state.ROI} %</div>
+                        <div className="savingsPerUser">Savings Per User: ${this.state.savingsPerUser}</div>
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-md-6">
                     </div>
                 </div>
                 

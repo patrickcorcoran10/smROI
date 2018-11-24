@@ -8,8 +8,8 @@ module.exports = function(sequelize, DataTypes) {
         dataProcessing: DataTypes.STRING,
         dataSecurity: DataTypes.STRING,
         emailVolume: DataTypes.STRING,
-        ROI: DataTypes.INTEGER,
-        savingsPerUser: DataTypes.INTEGER
+        ROI: DataTypes.STRING,
+        savingsPerUser: DataTypes.STRING
 
     });
     return DataPoints;
