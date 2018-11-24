@@ -4,6 +4,7 @@ import Start from "./components/Start/Start";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer/Footer";
 import Wrapper from "./components/Wrapper";
+// import Visuals from "./components/Visuals";
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
         <NavBar />
           <Wrapper>
             <Start />
+            {/* <Visuals /> */}
           </Wrapper>
         <Footer />
       </div>

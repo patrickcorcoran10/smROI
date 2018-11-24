@@ -1,3 +1,4 @@
+// Dependencies
 import React, { Component } from "react";
 import "./Start.css";
 import axios from "axios";
@@ -5,8 +6,7 @@ import axios from "axios";
 class Start extends Component {
     constructor() {
         super();
-    
-
+    // Setting Initial State
     this.state = {
         prospectName: "",
         planSelect: "",
@@ -18,12 +18,12 @@ class Start extends Component {
         emailVolume: "",
         ROI: 0.00,
         savingsPerUser: 0.00
-    };
-}
-
+        };
+    }
 
     calculate = (event) => {
         console.log("Now we're clicking!");
+        // Creating Variables to do the Math
         const users = parseInt(this.refs.numOfUsers.value);
         const cost = parseInt(this.refs.employeeCost.value);
         const plan = parseInt(this.refs.planSelect.value);
@@ -38,30 +38,21 @@ class Start extends Component {
         const chanceOfDataBreach = .025;
         const avgEmailCost = 1800.00;
         
-
-        console.log(plan);
-
-        
         // Data Collection Math
         let dataCollectionSavings = (((avgDataCollection * annualHours) * users) * cost) * dataCollectionValue;
-        console.log(dataCollectionSavings);
         // Data Processing Math
         let dataProcessingSavings = (((avgDataProcessing * annualHours) * users) * cost) * dataProcessingValue;
-        console.log(dataProcessingSavings);
         // Data Security Math
         let dataSecuritySavings = (avgDataSecurityRisk * chanceOfDataBreach) * dataSecurityValue;
-        console.log(dataSecuritySavings);
         // Email Efficiency Math
         let emailEfficiencySavings = (users * avgEmailCost) * emailVolumeValue;
-        console.log(emailEfficiencySavings);
         // ROI and Savings Math
         let yearlyCost = plan * users * 12;
-        console.log(yearlyCost);
         let yearlySavings = (emailEfficiencySavings + dataSecuritySavings + dataProcessingSavings + dataCollectionSavings);
-        console.log(yearlySavings);
         let ROI = parseFloat(yearlySavings/yearlyCost).toFixed(2);
         let savings = parseFloat(yearlySavings/users).toFixed(2);
         console.log(ROI)
+        // Updating State with User Inputs
         this.setState({
             prospectName: this.refs.name.value,
             planSelect: this.refs.planSelect.value,
@@ -76,6 +67,7 @@ class Start extends Component {
         }, () => {
             console.log(this.state);
         })
+        // Sending Inputs to the Database w/ Axios
         axios.post("/api/dataPoints", {
             prospectName: this.refs.name.value,
             planSelect: "standard",
@@ -89,23 +81,24 @@ class Start extends Component {
             savingsPerUser: savings
             
         })
+        // Response from the Database Route. 
         .then(function(response) {
             console.log(response);
         })
+        // Error Catch if there's a problem. 
         .catch(function (error) {
             console.log(error);
         });
     };
-
+    // We Start to Render in React
     render() {
-        console.log(this.state)
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
                         <div className="header">
                             <h4>This is Scott's App</h4>
-                            <p>{this.state.prospectName}</p>
+                            <h3>{this.state.prospectName}</h3>
                         </div>
                     </div>
                 </div>
@@ -119,7 +112,7 @@ class Start extends Component {
                 </div>
                 <br />
                 <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-12">
                         <div className="form-group">
                             <label htmlFor="exampleFormControlSelect1">Plan Select </label>
                             <select className="planSelect" id="exampleFormControlSelect1" ref="planSelect">
@@ -128,6 +121,8 @@ class Start extends Component {
                             </select>
                         </div>
                     </div>
+                </div>
+                <div className="row">
                     <div className="col-md-6">
                         <div className="numOfUsers">
                             <form>
@@ -136,12 +131,10 @@ class Start extends Component {
                             </form>
                         </div>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-12"> 
+                    <div className="col-md-6"> 
                         <form>
                             <div className="form-group">
-                                <label htmlFor="formControlRange">Employee Cost per Hour</label>
+                                <p>Employee Cost per Hour</p>
                                 <input ref="employeeCost" placeholder=" Employee Cost"/>
                             </div>
                         </form>
@@ -195,15 +188,28 @@ class Start extends Component {
                             <button className="submit" 
                             onClick={ this.calculate.bind(this) }
                             >Calculate</button>
+                            <button className="refresh"
+                            // onClick={}
+                            >Refresh</button>
+                        </div>
+                        <div className="refresh">
+                            
                         </div>
                     </div>
                 </div>
+                <br />
                 <div className="row">
-                    <div className="col-md-6">
-                        <div className="roi">Return on Investment: {this.state.ROI} %</div>
-                        <div className="savingsPerUser">Savings Per User: ${this.state.savingsPerUser}</div>
+                    <div className="col-md-3">
                     </div>
                     <div className="col-md-6">
+                        <div className="roi">
+                            <h6>Return on Investment: {this.state.ROI} %</h6>
+                        </div>
+                        <div className="savingsPerUser">
+                            <h6>Savings Per User: ${this.state.savingsPerUser}</h6>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
                     </div>
                 </div>
                 
