@@ -21,8 +21,38 @@ class Start extends Component {
     };
 }
 
+
     calculate = (event) => {
         console.log("Now we're clicking!");
+        const users = parseInt(this.refs.numOfUsers.value);
+        const cost = parseInt(this.refs.employeeCost.value);
+        const plan = parseInt(this.refs.planSelect.value);
+        const dataCollectionValue = parseFloat(this.refs.dataCollection.value);
+        const dataProcessingValue = parseFloat(this.refs.dataProcessing.value);
+        const dataSecurityValue = parseFloat(this.refs.dataSecurity.value);
+        const emailVolumeValue = parseFloat(this.refs.emailVolume.value);
+        const annualHours = 2000;
+        const avgDataCollection = .17;
+        const avgDataProcessing = .16;
+        const avgDataSecurityRisk = 1600000.00;
+        const chanceOfDataBreach = .025;
+        const avgEmailCost = 1800.00;
+        const ROI = 0;
+        const savings = 0;
+
+        
+        // Data Collection Math
+        let dataCollectionSavings = (((avgDataCollection * annualHours) * users) * cost) * dataCollectionValue;
+        console.log(dataCollectionSavings);
+        // Data Processing Math
+        let dataProcessingSavings = (((avgDataProcessing * annualHours) * users) * cost) * dataProcessingValue;
+        console.log(dataProcessingSavings);
+        // Data Security Math
+        let dataSecuritySavings = (avgDataSecurityRisk * chanceOfDataBreach) * dataSecurityValue;
+        console.log(dataSecuritySavings);
+        // Email Efficiency Math
+        let emailEfficiencySavings = (users * avgEmailCost) * emailVolumeValue;
+        console.log(emailEfficiencySavings);
         this.setState({
             prospectName: this.refs.name.value,
             planSelect: this.refs.planSelect.value,
@@ -32,8 +62,8 @@ class Start extends Component {
             dataProcessing: this.refs.dataProcessing.value,
             dataSecurity: this.refs.dataSecurity.value,
             emailVolume: this.refs.emailVolume.value,
-            ROI: 0,
-            savingsPerUser: 0
+            ROI: ROI,
+            savingsPerUser: savings
         }, () => {
             console.log(this.state);
         })
@@ -43,11 +73,11 @@ class Start extends Component {
             numOfUsers: this.refs.numOfUsers.value,
             employeeCost: this.refs.employeeCost.value,
             dataCollection: this.refs.dataCollection.value,
-            dataProcessing: "low",
-            dataSecurity: "low",
-            emailVolume: "low",
-            ROI: 10,
-            savingsPerUser: 10
+            dataProcessing: this.refs.dataProcessing.value,
+            dataSecurity: this.refs.dataSecurity.value,
+            emailVolume: this.refs.emailVolume.value,
+            ROI: ROI,
+            savingsPerUser: savings
             
         })
         .then(function(response) {
@@ -84,8 +114,8 @@ class Start extends Component {
                         <div className="form-group">
                             <label htmlFor="exampleFormControlSelect1">Plan Select </label>
                             <select className="planSelect" id="exampleFormControlSelect1" ref="planSelect">
-                                <option value="standard">Standard</option>
-                                <option value="plus">Plus</option>
+                                <option value="8">Standard</option>
+                                <option value="15">Plus</option>
                             </select>
                         </div>
                     </div>
@@ -113,9 +143,9 @@ class Start extends Component {
                         <div className="form-group">
                             <label htmlFor="exampleFormControlSelect1">Characterize your Company's Time Spent Collecting Data?</label>
                                 <select ref="dataCollection" className="dataCollection" id="exampleFormControlSelect1">
-                                    <option value="low">Low</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="high">High</option>
+                                    <option value=".025">Low</option>
+                                    <option value=".05">Medium</option>
+                                    <option value=".075">High</option>
                                 </select>
                         </div>
                     </div>
@@ -123,9 +153,9 @@ class Start extends Component {
                         <div className="form-group">
                             <label htmlFor="exampleFormControlSelect1">Characterize your Company's Time Spent Processing Data?</label>
                                 <select ref="dataProcessing" className="dataProcessing" id="exampleFormControlSelect1">
-                                    <option value="low">Low</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="high">High</option>
+                                    <option value=".025">Low</option>
+                                    <option value=".05">Medium</option>
+                                    <option value=".075">High</option>
                                 </select>
                         </div>
                     </div>
@@ -133,9 +163,9 @@ class Start extends Component {
                         <div className="form-group">
                             <label htmlFor="exampleFormControlSelect1">Characterize your Company's Current Level of Data Security and Process Compliance?</label>
                                 <select ref="dataSecurity" className="dataSecurity">
-                                    <option value="low">Low</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="high">High</option>
+                                    <option value=".03">Low</option>
+                                    <option value=".02">Medium</option>
+                                    <option value=".01">High</option>
                                 </select>
                         </div>
                     </div>
@@ -143,9 +173,9 @@ class Start extends Component {
                         <div className="form-group">
                             <label htmlFor="exampleFormControlSelect1">Characterize your Company's Current Email Volume?</label>
                                 <select ref="emailVolume" className="emailVolume" id="exampleFormControlSelect1">
-                                    <option value="low">Low</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="high">High</option>
+                                    <option value=".025">Low</option>
+                                    <option value=".05">Medium</option>
+                                    <option value=".075">High</option>
                                 </select>
                         </div>
                     </div>
