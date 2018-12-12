@@ -5,8 +5,10 @@ CREATE DATABASE smROI;
 
 use smROI;
 
-
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 
 select * from dataPoints;
 
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+select * from multiyearROIs;
+
+
