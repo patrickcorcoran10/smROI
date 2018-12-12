@@ -23,6 +23,7 @@ class Start extends Component {
 
     calculate = (event) => {
         console.log("Now we're clicking!");
+        event.preventDefault();
         // Creating Variables to do the Math
         const users = parseInt(this.refs.numOfUsers.value);
         const cost = parseInt(this.refs.employeeCost.value);
@@ -51,7 +52,7 @@ class Start extends Component {
         let yearlySavings = (emailEfficiencySavings + dataSecuritySavings + dataProcessingSavings + dataCollectionSavings);
         let ROI = parseFloat(yearlySavings/yearlyCost).toFixed(2);
         let savings = parseFloat(yearlySavings/users).toFixed(2);
-        console.log(ROI)
+        // console.log(ROI)
         // Updating State with User Inputs
         this.setState({
             prospectName: this.refs.name.value,
@@ -65,7 +66,7 @@ class Start extends Component {
             ROI: ROI,
             savingsPerUser: savings
         }, () => {
-            console.log(this.state);
+            // console.log(this.state);
         })
         // Sending Inputs to the Database w/ Axios
         axios.post("/api/dataPoints", {
@@ -90,6 +91,24 @@ class Start extends Component {
             console.log(error);
         });
     };
+    reset = (event) => {
+        console.log("Let's reset the board!");
+        this.setState({
+            prospectName: "",
+            planSelect: "",
+            numOfUsers: "",
+            employeeCost: "",
+            dataCollection: "",
+            dataProcessing: "",
+            dataSecurity: "",
+            emailVolume: "",
+            ROI: "",
+            savingsPerUser: ""
+        }, () => {
+            console.log(this.state);
+        })
+        // this.propectNameField.reset();
+    }
     // We Start to Render in React
     render() {
         return (
@@ -105,7 +124,7 @@ class Start extends Component {
                 <div className="row">
                     <div className="col-md-12">
                         <h6>Prospect Name: </h6>
-                        <form>
+                        <form ref="prospectNameField">
                             <input ref="name" placeholder=" Prospect Name" />
                         </form>
                     </div>
@@ -189,7 +208,7 @@ class Start extends Component {
                             onClick={ this.calculate.bind(this) }
                             >Calculate</button>
                             <button className="refresh"
-                            // onClick={}
+                            onClick={ this.reset.bind(this) }
                             >Refresh</button>
                         </div>
                         <div className="refresh">

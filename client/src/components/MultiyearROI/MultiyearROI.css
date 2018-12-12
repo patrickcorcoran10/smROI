@@ -1,0 +1,121 @@
+.container {
+    color: gray
+}
+#header {
+    background-color: white;
+    border-style: solid;
+    border-color: midnightblue;
+    color: midnightblue;
+    text-align: center;
+    
+}
+#trSavings {
+    background-color: white;
+    border-style: solid;
+    border-color: midnightblue;
+    color: midnightblue;
+}
+.personnelEfficiencies {
+    background-color: white;
+    border-style: solid;
+    border-color: midnightblue;
+    color: midnightblue;
+}
+.investments {
+    background-color: white;
+    border-style: solid;
+    border-color: midnightblue;
+    color: midnightblue;
+}
+.ptEnrichment {
+    background-color: white;
+    border-style: solid;
+    border-color: midnightblue;
+    color: midnightblue;
+}
+
+
+.roi {
+    background-color: white;
+    border-style: solid;
+    border-color: midnightblue;
+    color: midnightblue;
+}
+#submit {
+    background-color: white;
+    border-style: solid;
+    border-color: midnightblue;
+    color: midnightblue;
+}
+.summary {
+    background-color: white;
+    border-style: solid;
+    border-color: midnightblue;
+    color: midnightblue;
+}
+.divTitle {
+    background-color: midnightblue;
+    color: white;
+    text-align: left;
+}
+.investmentWordBubble {
+    color: white;
+    font-size: 11px;
+    background-color: darkgrey;
+    border-color: black;
+    border-width: 10px;
+    text-align: left;
+    padding-left: 15px;
+}
+.investmentTable {
+    font-size: 11px;
+    text-align: right;
+}
+.investmentTH {
+    font-size: 14px;
+}
+
+table {
+    font-size: 14px;
+    width: 100%;
+}
+
+.smallTR {
+    font-size: 11px;
+}
+.roiShowcase {
+    background-color: greenyellow;
+
+}
+
+
+.leftTH {
+    margin-right: 500px;
+    text-align: left;
+}
+
+.tableInput {
+    width: 75px;
+    height: 20px;
+    text-align: right;
+}
+
+#footnote {
+    color: grey;
+    font-size: 10px;
+}
+
+.midTableInput {
+    text-align: right;
+    font-size: 11px;
+    margin-right: 500px;
+
+}
+
+.midTable {
+    text-align: right;
+    font-size: 11px;
+    margin-right: 500px;
+}
+
+
