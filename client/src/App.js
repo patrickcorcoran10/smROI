@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 // import Start from "./components/Start/Start";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
-import Wrapper from "./components/Wrapper";
-import MultiyearROI from "./components/MultiyearROI/MultiyearROI";
-// import Visuals from "./components/Visuals";
+import Wrapper from "./components/Wrapper/Wrapper";
+import Parent from "./components/Parent/Parent";
 
 class App extends Component {
   render() {
@@ -13,8 +12,7 @@ class App extends Component {
       <div className="App">
         <NavBar />
           <Wrapper>
-            <MultiyearROI />
-            {/* <Visuals /> */}
+            <Parent />
           </Wrapper>
         <Footer />
       </div>

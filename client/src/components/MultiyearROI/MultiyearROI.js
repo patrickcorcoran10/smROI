@@ -49,7 +49,7 @@ class MultiyearROI extends Component {
         console.log("Now we're clicking");
         event.preventDefault();
         this.setState({
-            companyName: this.refs.companyName.value,
+                companyName: this.refs.companyName.value,
             // Turnover and Recruitment Savings
                 // Employee Turnover Cost Savings Inputs
                 lastFiscalYearEnd: this.refs.lastFiscalYearEnd.value,
@@ -137,7 +137,7 @@ class MultiyearROI extends Component {
     render() {
         return (
             <div className="container">
-                <div className="row" id="header">
+                {/* <div className="row" id="header">
                     <div className="col-md-12">
                         <h4>The Employee Experience ROI Calculator</h4>
                         <br />
@@ -147,8 +147,8 @@ class MultiyearROI extends Component {
                         <h6>When did your last fiscal period end?</h6>
                         <input ref="lastFiscalYearEnd" type="date" placeholder="Enter Date"></input>
                     </div>
-                </div>
-                <div id="trSavings">
+                </div> */}
+                {/* <div id="trSavings">
                     <div className="row">
                         <div className="col-md-5">
                             <p className="divTitle">Turnover and Recruitment Savings</p>   
@@ -308,8 +308,8 @@ class MultiyearROI extends Component {
                             </table>
                         </div>
                     </div>
-                </div>
-                <div className="personnelEfficiencies">
+                </div> */}
+                {/* <div className="personnelEfficiencies">
                 <div className="row" id="personnelEfficiencies">
                     <div className="col-md-5">
                                 <p className="divTitle">Personnel Efficiencies</p>   
@@ -448,8 +448,8 @@ class MultiyearROI extends Component {
                                 </table>
                             </div>
                         </div>
-                    </div>
-                <div className="investments">
+                    </div> */}
+                {/* <div className="investments">
                     <div className="row">
                         <div className="col-md-5">
                                 <p className="divTitle">Investment</p>   
@@ -519,8 +519,8 @@ class MultiyearROI extends Component {
                         <div className="col-md-2">
                         </div>
                     </div>
-                </div>
-                <div className="ptEnrichment">
+                </div> */}
+                {/* <div className="ptEnrichment">
                     <div className="row">
                         <div className="col-md-5">
                                 <p className="divTitle">Program and Tool Enrichment</p>   
@@ -570,8 +570,8 @@ class MultiyearROI extends Component {
                             </table>
                         </div>
                     </div>
-                </div>
-                <div className="roi">
+                </div> */}
+                {/* <div className="roi">
                     <div className="row" id="roi">
                         <div className="col-md-5">
                             <p className="divTitle">Return on Investment</p>   
@@ -742,8 +742,8 @@ class MultiyearROI extends Component {
                             </table>
                         </div>
                     </div>
-                </div>
-                <div className="row" id="submit">
+                </div> */}
+                {/* <div className="row" id="submit">
                     <div className="col-md-4">
                     </div>
                     <div className="col-md-4">
@@ -752,8 +752,8 @@ class MultiyearROI extends Component {
                     </div>
                     <div className="col-md-4">
                     </div>
-                </div>
-                <div className="summary">
+                </div> */}
+                {/* <div className="summary">
                     <div className="row">
                         <div className="col-md-5">
                             <p className="divTitle">Summary</p>   
@@ -769,7 +769,7 @@ class MultiyearROI extends Component {
                             <h6>Summary</h6>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         
         )
