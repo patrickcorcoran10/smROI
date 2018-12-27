@@ -3,9 +3,9 @@ import React, { Component } from "react";
 import "../MultiyearROI/MultiyearROI.css";
 
 class YearQ extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
+    constructor() {
+        super()
+    this.state = {
             companyName: "",
         // Turnover and Recruitment Savings
             // Employee Turnover Cost Savings Inputs
@@ -41,16 +41,23 @@ class YearQ extends Component {
             savingsAssumption1: "",
             savingsAssumption2: "",
         };
+    
+    }
+    onClick() {
+        this.setState({
+            companyName: this.refs.companyName.value,
+            lastFiscalYearEnd: this.refs.lastFiscalYearEnd.value
+        }, () => {
+        console.log("YearQ click");
+        console.log(this.state);
+        
+        let year = parseInt(this.refs.lastFiscalYearEnd.value.slice(0,4));
+        let yearPlusOne = year + 1;
+        let yearPlusTwo = year + 2;
+        console.log(year+""+yearPlusOne+""+yearPlusTwo);
+        });    
     };
-    handleChange(event) {
-        // let companyName = this.refs.companyNmae.value;
-        console.log(event.target.value);
-    };
-    // this.setState({
-    //     companyName: this.refs.companyNmae.value,
-    //     lastFiscalYearEnd: refs.lastFiscalYearEnd.value
-    // })
-
+    
     render() {
         return(
             <div className="containter">
@@ -63,6 +70,7 @@ class YearQ extends Component {
                         <br />
                         <h6>When did your last fiscal period end?</h6>
                         <input ref="lastFiscalYearEnd" type="date" placeholder="Enter Date"></input>
+                        <button onClick={this.onClick.bind(this)}>Submit</button>
                     </div>
                 </div>
             </div>

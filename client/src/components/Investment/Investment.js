@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import "../MultiyearROI/MultiyearROI";
 
 class Investment extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
     render() {
         return(
