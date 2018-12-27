@@ -8,10 +8,15 @@ class MultiyearROI extends Component {
         super();
     
     this.state = {
+        // YearQ Inputs
             companyName: "",
+            tableYear: "",
+            tableYearPlusOne: "",
+            tableYearPlusTwo: "",
+            tableYearPlusThree: "",
+            lastFiscalYearEnd: "",
         // Turnover and Recruitment Savings
             // Employee Turnover Cost Savings Inputs
-            lastFiscalYearEnd: "",
             totEBOY: "",
             totEEOY: "",
             totEEOY1: "",
@@ -44,6 +49,49 @@ class MultiyearROI extends Component {
             savingsAssumption2: "",
         };
     };
+
+    companyYear = (event) => {
+        event.preventDefault(); 
+        let year = parseInt(this.refs.lastFiscalYearEnd.value.slice(0,4));
+        let yearPlusOne = year + 1;
+        let yearPlusTwo = year +2;
+        let yearPlusThree = year + 3;
+        this.setState({
+            companyName: this.refs.companyName.value,
+            lastFiscalYearEnd: this.refs.lastFiscalYearEnd.value,
+            tableYear: "FY-"+year,
+            tableYearPlusOne: "FY-"+yearPlusOne,
+            tableYearPlusTwo: "FY-"+yearPlusTwo,
+            tableYearPlusThree: "FY-"+yearPlusThree,
+        }, () => {
+        console.log(this.state);    
+        });
+    }
+    turnoverRecruitmentSavings = (event) => {
+        event.preventDefault();
+        let totEBOYwithoutCoYearPlusOne = this.refs.totEEOY.value;
+        let totEBOYwithCoYearPlusOne = totEBOYwithoutCoYearPlusOne;
+        let overallEmployeeTurnoverPlusOne = (.126 * (1 - (parseInt(this.refs.productTurnoverSavings.value))));
+        let impactOverallEmployeeTurnoverPlusOne = overallEmployeeTurnoverPlusOne - 12.6;
+        let totEmployeesWithVoluntaryExitPlusOnewithoutCompany = .126 * ((totEBOYwithoutCoYearPlusOne + totEBOYwithoutCoYearPlusOne)/2);
+        let totEmployeesWithVoluntaryExitPlusOnewithCompany = .114 * ((totEBOYwithoutCoYearPlusOne + this.state.totEEOY1.value)/2);
+        this.setState({
+            totEBOY: this.refs.totEBOY.value,
+            totEBOYwoCoYearPlusOne: totEBOYwithoutCoYearPlusOne,
+            totEBOYwithCoYearPlusOne: totEBOYwithCoYearPlusOne,
+            totEEOY: this.refs.totEEOY.value,
+            totEEOY1: this.refs.totEEOY1.value,
+            totEmployeesWithVoluntaryExitPlusOnewithoutCompany: totEmployeesWithVoluntaryExitPlusOnewithoutCompany,
+            totEwVoluntaryExit: this.refs.totEwVoluntaryExit.value,
+            avgTurnoverCostVoluntaryExit: this.refs.avgTurnoverCostVoluntaryExit.value,
+            productTurnoverSavings: this.refs.productTurnoverSavings.value,
+            overallEmployeeTurnoverPlusOne: overallEmployeeTurnoverPlusOne,
+            impactOverallEmployeeTurnoverPlusOne: impactOverallEmployeeTurnoverPlusOne,
+        }, () => {
+            console.log(this.state);
+
+        })
+    }
 
     calculate = (event) => {
         console.log("Now we're clicking");
@@ -137,7 +185,7 @@ class MultiyearROI extends Component {
     render() {
         return (
             <div className="container">
-                {/* <div className="row" id="header">
+                <div className="row" id="header">
                     <div className="col-md-12">
                         <h4>The Employee Experience ROI Calculator</h4>
                         <br />
@@ -146,9 +194,11 @@ class MultiyearROI extends Component {
                         <br />
                         <h6>When did your last fiscal period end?</h6>
                         <input ref="lastFiscalYearEnd" type="date" placeholder="Enter Date"></input>
+                        <br />
+                        <button onClick={this.companyYear.bind(this)}>Confirm</button>
                     </div>
-                </div> */}
-                {/* <div id="trSavings">
+                </div>
+                <div id="trSavings">
                     <div className="row">
                         <div className="col-md-5">
                             <p className="divTitle">Turnover and Recruitment Savings</p>   
@@ -162,9 +212,9 @@ class MultiyearROI extends Component {
                                 <tbody>
                                     <tr>
                                         <th className="leftTH">Employee Turnover Costs</th>
-                                        <th>FY-2017</th>
-                                        <th>FY-2018</th>
-                                        <th>FY-2018</th>
+                                        <th>{this.state.tableYear}</th>
+                                        <th>{this.state.tableYearPlusOne}</th>
+                                        <th>{this.state.tableYearPlusOne}</th>
                                         <th className="impactTH">IMPACT</th>
                                     </tr>
                                     <tr className="smallTR">
@@ -177,22 +227,22 @@ class MultiyearROI extends Component {
                                     <tr>
                                         <td className="leftTH">Total Employees at Beginning of Year</td>
                                         <td><input className="tableInput" ref="totEBOY" placeholder="0"></input></td>
-                                        <td>x</td>
-                                        <td>x</td>
-                                        <td>x</td>
+                                        <td>{this.state.totEBOYwithCoYearPlusOne}</td>
+                                        <td>{this.state.totEBOYwithCoYearPlusOne}</td>
+                                        <td></td>
                                     </tr>
                                     <tr>
                                         <td className="leftTH">Total Employees at End of Year</td>
                                         <td><input className="tableInput" ref="totEEOY" placeholder="0"></input></td>
                                         <td><input className="tableInput" ref="totEEOY1" placeholder="0"></input></td>
-                                        <td>x</td>
-                                        <td>x</td>
+                                        <td>{this.state.totEEOY1}</td>
+                                        <td></td>
                                     </tr>
                                     <tr>
                                         <td className="leftTH">Total Employees with Voluntary Exit</td>
                                         <td><input className="tableInput" ref="totEwVoluntaryExit" placeholder="0"></input></td>
-                                        <td>x</td>
-                                        <td>x</td>
+                                        <td>{this.state.totEmployeesWithVoluntaryExitPlusOnewithoutCompany}</td>
+                                        <td>{this.state.totEmployeesWithVoluntaryExitPlusOnewithoutCompany}</td>
                                         <td>x</td>
                                     </tr>
                                     <tr>
@@ -223,10 +273,10 @@ class MultiyearROI extends Component {
                                 <tbody>
                                     <tr>
                                         <td>Overall Employee Turnover</td>
-                                        <td>%</td>
-                                        <td>%</td>
-                                        <td>%</td>
-                                        <td>%</td>
+                                        <td>12.6%</td>
+                                        <td>12.6%</td>
+                                        <td>{this.state.overallEmployeeTurnoverPlusOne}</td>
+                                        <td>{this.state.impactOverallEmployeeTurnoverPlusOne}</td>
                                     </tr>
                                     <tr>
                                         <td>Total Employee Turnover Costs</td>
@@ -245,9 +295,9 @@ class MultiyearROI extends Component {
                                 <tbody>
                                     <tr>
                                         <th className="leftTH">Recruiting Cost Savings</th>
-                                        <th>FY-2017</th>
-                                        <th>FY-2018</th>
-                                        <th>FY-2018</th>
+                                        <th>{this.state.tableYear}</th>
+                                        <th>{this.state.tableYearPlusOne}</th>
+                                        <th>{this.state.tableYearPlusOne}</th>
                                         <th className="impactTH">IMPACT</th>
                                     </tr>
                                     <tr className="smallTR">
@@ -308,8 +358,13 @@ class MultiyearROI extends Component {
                             </table>
                         </div>
                     </div>
-                </div> */}
-                {/* <div className="personnelEfficiencies">
+                    <div className="row">
+                        <div className="col-md-12">
+                        <button onClick={this.turnoverRecruitmentSavings.bind(this)}>Turnover and Recruitment Calculation</button>
+                        </div>
+                    </div>
+                </div>
+                <div className="personnelEfficiencies">
                 <div className="row" id="personnelEfficiencies">
                     <div className="col-md-5">
                                 <p className="divTitle">Personnel Efficiencies</p>   
@@ -323,9 +378,9 @@ class MultiyearROI extends Component {
                                     <tbody>
                                         <tr>
                                             <th className="leftTH">HR Administration Time Savings</th>
-                                            <th>FY-2017</th>
-                                            <th>FY-2018</th>
-                                            <th>FY-2018</th>
+                                            <th>{this.state.tableYear}</th>
+                                            <th>{this.state.tableYearPlusOne}</th>
+                                            <th>{this.state.tableYearPlusOne}</th>
                                             <th className="impactTH">IMPACT</th>
                                         </tr>
                                         <tr className="smallTR">
@@ -385,9 +440,9 @@ class MultiyearROI extends Component {
                                     <tbody>
                                         <tr>
                                             <th className="leftTH">General Employee Productivity Savings Table</th>
-                                            <th>FY-2017</th>
-                                            <th>FY-2018</th>
-                                            <th>FY-2018</th>
+                                            <th>{this.state.tableYear}</th>
+                                            <th>{this.state.tableYearPlusOne}</th>
+                                            <th>{this.state.tableYearPlusOne}</th>
                                             <th className="impactTH">IMPACT</th>
                                         </tr>
                                         <tr className="smallTR">
@@ -448,8 +503,8 @@ class MultiyearROI extends Component {
                                 </table>
                             </div>
                         </div>
-                    </div> */}
-                {/* <div className="investments">
+                    </div>
+                <div className="investments">
                     <div className="row">
                         <div className="col-md-5">
                                 <p className="divTitle">Investment</p>   
@@ -471,7 +526,7 @@ class MultiyearROI extends Component {
                                 <tbody>
                                     <tr>
                                         <th></th>
-                                        <th className="investmentTH">FY-2018</th>
+                                        <th className="investmentTH">{this.state.tableYearPlusOne}</th>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -520,7 +575,7 @@ class MultiyearROI extends Component {
                         </div>
                     </div>
                 </div> */}
-                {/* <div className="ptEnrichment">
+                <div className="ptEnrichment">
                     <div className="row">
                         <div className="col-md-5">
                                 <p className="divTitle">Program and Tool Enrichment</p>   
@@ -534,8 +589,8 @@ class MultiyearROI extends Component {
                                 <tbody>
                                     <tr>
                                         <th className="leftTH">Program & Tool Replacement Savings</th>
-                                        <th>FY-2018</th>
-                                        <th>FY-2018</th>
+                                        <th>{this.state.tableYearPlusOne}</th>
+                                        <th>{this.state.tableYearPlusOne}</th>
                                         <th className="impactTH">IMPACT</th>
                                     </tr>
                                     <tr className="smallTR">
@@ -570,8 +625,8 @@ class MultiyearROI extends Component {
                             </table>
                         </div>
                     </div>
-                </div> */}
-                {/* <div className="roi">
+                </div>
+                <div className="roi">
                     <div className="row" id="roi">
                         <div className="col-md-5">
                             <p className="divTitle">Return on Investment</p>   
@@ -587,7 +642,7 @@ class MultiyearROI extends Component {
                                 <tbody>
                                     <tr>
                                         <th></th>
-                                        <th className="investmentTH">FY-2018</th>
+                                        <th className="investmentTH">{this.state.tableYearPlusOne}</th>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -647,9 +702,9 @@ class MultiyearROI extends Component {
                                 <tbody>
                                     <tr>
                                         <th></th>
-                                        <th>FY-2018</th>
-                                        <th>FY-2019</th>
-                                        <th>FY-2020</th>
+                                        <th>{this.state.tableYearPlusOne}</th>
+                                        <th>{this.state.tableYearPlusTwo}</th>
+                                        <th>{this.state.tableYearPlusThree}</th>
                                         <th>3 Years</th>
                                     </tr>
                                     <tr className="smallTR">
@@ -742,8 +797,8 @@ class MultiyearROI extends Component {
                             </table>
                         </div>
                     </div>
-                </div> */}
-                {/* <div className="row" id="submit">
+                </div>
+                <div className="row" id="submit">
                     <div className="col-md-4">
                     </div>
                     <div className="col-md-4">
@@ -752,24 +807,29 @@ class MultiyearROI extends Component {
                     </div>
                     <div className="col-md-4">
                     </div>
-                </div> */}
-                {/* <div className="summary">
+                </div>
+                <div className="summary">
                     <div className="row">
                         <div className="col-md-5">
-                            <p className="divTitle">Summary</p>   
+                            <h3>X</h3>
+                            <h3>`ROI in Year 1 for 
+                            {/* {this.refs.companyName.value}  */}
+                            Company`</h3>
                         </div>
-                        <div className="col-md-7">
+                        <div className="col-md-2">
+                            <h6>Turnover Recruitment Savings</h6>
+                            <br />
+                        </div>
+                        <div className="col-md-2">
+                            <h6>Personnel Efficiences</h6>   
+                            <br />
+                        </div>
+                        <div className="col-md-2">
+                            <h6>Program Tool Replacement</h6>
+                            <br />
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-md-5">
-                            <h6>This is where we will display the</h6>
-                        </div>
-                        <div className="col-md-7">
-                            <h6>Summary</h6>
-                        </div>
-                    </div>
-                </div> */}
+                </div>
             </div>
         
         )
