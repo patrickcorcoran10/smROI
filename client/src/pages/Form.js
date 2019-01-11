@@ -208,10 +208,10 @@ class Form extends Component {
                 </div>
                 <div className="row">
                     <div className="col-md-12">
-                        <p>Total Employees Beginning of Year {this.year}</p>
+                        <p>Total Employees Beginning of Year `{this.state.year}`</p>
                         <input ref="totEBOY" onChange={this.acceptTotEBOY}></input>
                         <br />
-                        <p>Total Employees End of Year {this.year}</p>
+                        <p>Total Employees End of Year {this.state.year}</p>
                         <input ref="totEEOY" onChange={this.accpetTotEEOY}></input>
                         <br />
                         <p>Total Employees End of Year </p>
