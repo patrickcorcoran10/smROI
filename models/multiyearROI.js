@@ -1,9 +1,11 @@
 module.exports = function(sequelize, DataTypes) {
     var MultiyearROI = sequelize.define("multiyearROI", {
             companyName: DataTypes.STRING,
+            clientName: DataTypes.STRING,
+            clientEmail: DataTypes.STRING,
+            lastFiscalYearEnd: DataTypes.DATE,
         // Turnover and Recruitment Savings
             // Employee Turnover Cost Savings Inputs
-            lastFiscalYearEnd: DataTypes.DATE,
             totEBOY: DataTypes.STRING,
             totEEOY: DataTypes.STRING,
             totEEOY1: DataTypes.STRING,

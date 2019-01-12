@@ -11,16 +11,18 @@ module.exports = function(app) {
     app.post("/api/multiyearROI", function(req, res) {
         db.multiyearROI.create({
             companyName: req.body.companyName,
+            clientName: req.body.clientName,
+            clientEmail: req.body.clientEmail,
+            lastFiscalYearEnd: req.body.lastFiscalYearEnd,
         // Turnover and Recruitment Savings
             // Employee Turnover Cost Savings Inputs
-            lastFiscalYearEnd: req.body.lastFiscalYearEnd,
             totEBOY: req.body.totEBOY,
             totEEOY: req.body.totEEOY,
             totEEOY1: req.body.totEEOY1,
             totEwVoluntaryExit: req.body.totEwVoluntaryExit,
             avgTurnoverCostVoluntaryExit: req.body.avgTurnoverCostVoluntaryExit,
             productTurnoverSavings: req.body.productTurnoverSavings,
-        //     // Recruiting Cost Inputs
+             // Recruiting Cost Inputs
             avgDaysPostingToAccept: req.body.avgDaysPostingToAccept,
             totRecruitingExpenses: req.body.totRecruitingExpenses,
             productRecruitingSavings: req.body.productRecruitingSavings,

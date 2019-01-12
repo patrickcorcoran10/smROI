@@ -4,8 +4,8 @@ import './App.css';
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import Wrapper from "./components/Wrapper/Wrapper";
-// import Parent from "./components/Parent/Parent";
-import MultiyearROI from './components/MultiyearROI/MultiyearROI';
+import Parent from "./components/Parent/Parent";
+// import MultiyearROI from './components/MultiyearROI/MultiyearROI';
 
 class App extends Component {
   render() {
@@ -13,8 +13,8 @@ class App extends Component {
       <div className="App">
         <NavBar />
           <Wrapper>
-            {/* <Parent /> */}
-            <MultiyearROI />
+            <Parent />
+            {/* <MultiyearROI /> */}
           </Wrapper>
         <Footer />
       </div>

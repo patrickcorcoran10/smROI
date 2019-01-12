@@ -8,7 +8,11 @@ import React, { Component } from "react";
 // import Submit from "../Submit/Submit";
 // import Summary from "../Summary/Summary";
 // import Wrapper from "../Wrapper/Wrapper";
-import MultiyearROI from "../MultiyearROI/MultiyearROI";
+// import MultiyearROI from "../MultiyearROI/MultiyearROI";
+import Form from "../../pages/Form";
+// import SignIn from "../../pages/SignIn";
+// import UserView from "../../pages/UserView";
+// import Visuals from "../../pages/Visuals";
 
 class Parent extends Component {
     constructor(props) {
@@ -64,7 +68,7 @@ class Parent extends Component {
     render() {
         return (
             <div className="parent">
-                <Wrapper >
+                {/* <Wrapper > */}
                     {/* <YearQ 
                      click={this.companyYear.bind(this)}
                     />
@@ -75,8 +79,12 @@ class Parent extends Component {
                     <ROI />
                     <Submit />
                     <Summary /> */}
-                    <MultiyearROI />
-                </Wrapper>
+                    {/* <MultiyearROI /> */}
+                    <Form />
+                    {/* <SignIn /> */}
+                    {/* <UserView /> */}
+                    {/* <Visuals /> */}
+                {/* </Wrapper> */}
             </div>
         )
     }
