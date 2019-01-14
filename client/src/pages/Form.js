@@ -1,5 +1,20 @@
 import React, { Component } from 'react';
 import axios from "axios";
+// import Modal from "react-modal";
+
+// Custom Styles for the modal technology that shows upon submit
+// const customStyles = {
+//     content : {
+//       top                   : '50%',
+//       left                  : '50%',
+//       right                 : 'auto',
+//       bottom                : 'auto',
+//       marginRight           : '-50%',
+//       transform             : 'translate(-50%, -50%)'
+//     }
+//   };
+
+// Modal.setAppElement('#root');
 
 class Form extends Component {
     constructor(props) {
@@ -45,6 +60,11 @@ class Form extends Component {
                     savingsAssumption1: "",
                     savingsAssumption2: "",
                 };
+        // Setting the Modal to the current state of the commponent.
+        // this.openModal = this.openModal.bind(this);
+        // this.afterOpenModal = this.afterOpenModal.bind(this);
+        // this.closeModal = this.closeModal.bind(this);
+
         this.acceptCompanyName = this.acceptCompanyName.bind(this);
         this.acceptLastFiscalYearEnd = this.acceptLastFiscalYearEnd.bind(this);
         this.saveInputs = this.saveInputs.bind(this);
@@ -70,6 +90,15 @@ class Form extends Component {
         this.acceptExistingProvidersCost = this.acceptExistingProvidersCost.bind(this);
         this.acceptRewardsProgramOtherCompany = this.acceptRewardsProgramOtherCompany.bind(this);
         };
+        // afterOpenModal() {
+        //     // references are now sync'd and can be accessed.
+        //     this.subtitle.style.color = 'black';
+        // };
+        //   // Function that will send user back to the home page on click.
+        // closeModal() {
+        //     this.setState({modalIsOpen: false});
+        //     // this.props.history.push("/")
+        // };
         acceptCompanyName(event) {
             this.setState({
                 companyName: this.refs.companyName.value
@@ -234,8 +263,31 @@ class Form extends Component {
             .catch(function(error) {
                 console.log(error);
             });
+
         };
         resetButton(event) {
+            this.refs.companyName.value = "";
+            this.refs.name.value = "";
+            this.refs.email.value = "";
+            this.refs.lastFiscalYearEnd.value = "";
+            this.refs.totEBOY.value = "";
+            this.refs.totEEOY.value = "";
+            this.refs.totEEOY1.value = "";
+            this.refs.totEwVoluntaryExit.value = "";
+            this.refs.avgTurnoverCostVoluntaryExit.value = "";
+            this.refs.avgDaysPostingToAccept.value = "";
+            this.refs.totRecruitingExpenses.value = "";
+            this.refs.totHREmployeesAdminEmployeePrograms.value = "";
+            this.refs.totHREmployeesAdminEmployeePrograms1.value = "";
+            this.refs.percentageShareOfHREmployeesTimeAdminEmployeePrograms.value = "";
+            this.refs.avgSalaryHREmployee.value = "";
+            this.refs.avgAnnualSalaryGeneralEmployee.value = "";
+            this.refs.suggestedUserMax.value = "";
+            this.refs.annualSoftwareFees.value = "";
+            this.refs.oneTimeImplimentationFee.value = "";
+            this.refs.existingProvidersCost.value = "";
+            this.refs.rewardsProgramOtherCompany.value = "";
+            
             this.setState({
             // YearQ Inputs
                 companyName: "",
@@ -374,6 +426,13 @@ class Form extends Component {
                     </div>
                 </div>
                 <div className="row">
+                    {/* <Modal
+                    isOpen={this.state.modalIsOpen}
+                    onAfterOpen={this.afterOpenModal}
+                    onRequestClose={this.closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                    /> */}
                 </div>
             </div>
         )

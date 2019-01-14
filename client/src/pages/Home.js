@@ -11,7 +11,21 @@ class Home extends Component {
     }
 
     searchDB(event) {
+        var searchTerm = {
+            search: this.refs.searchTerm.value,
+        };
+        axios.get("/")
         // this will include a get route that will search by company name and perhaps client name and client email.
+    };
+
+    deleteEntry = (event) => {
+        event.preventDefault();
+        var deleteId = {
+            deleteId: event.target.value,
+        }
+        axios.post("/Home/delete", {
+
+        })
     }
 
     render() {
@@ -20,8 +34,8 @@ class Home extends Component {
                 <div className="row">
                     <div className="col-md-12">
                         <h6>Search Clients</h6>
-                        <input></input>
-                        <button onClick={this.searchDB}></button>
+                        <input ref="searchTerm"></input>
+                        <button onClick={this.searchDB}>Search Database</button>
                         <br />
                     </div>
                 </div>

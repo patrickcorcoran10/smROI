@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 // import YearQ from "../YearQ/YearQ";
 // import TRRecruitmentSavings from "../TRRecruitmentSavings/TRRecruitmentSavings";
 // import PersonnelEfficiencies from "../PersonnelEfficiencies/PersonnelEfficiencies";
@@ -10,9 +11,10 @@ import React, { Component } from "react";
 // import Wrapper from "../Wrapper/Wrapper";
 // import MultiyearROI from "../MultiyearROI/MultiyearROI";
 import Form from "../../pages/Form";
-// import SignIn from "../../pages/SignIn";
-// import UserView from "../../pages/UserView";
-// import Visuals from "../../pages/Visuals";
+import SignIn from "../../pages/SignIn";
+import UserView from "../../pages/UserView";
+import Visuals from "../../pages/Visuals";
+import Home from "../../pages/Home";
 
 class Parent extends Component {
     constructor(props) {
@@ -68,23 +70,11 @@ class Parent extends Component {
     render() {
         return (
             <div className="parent">
-                {/* <Wrapper > */}
-                    {/* <YearQ 
-                     click={this.companyYear.bind(this)}
-                    />
-                    <TRRecruitmentSavings />
-                    <PersonnelEfficiencies />
-                    <Investment />
-                    <PTEnrichment />
-                    <ROI />
-                    <Submit />
-                    <Summary /> */}
-                    {/* <MultiyearROI /> */}
-                    <Form />
-                    {/* <SignIn /> */}
-                    {/* <UserView /> */}
-                    {/* <Visuals /> */}
-                {/* </Wrapper> */}
+                <Route exact path="/" component={Home} />
+                <Route exact path="/form" render={(props) => <Form {...props} sendForm={this.onChoice.bind(this)} />} />
+                <Route exact path="/user-view" render={(props) => <UserView {...props} onClick={this.onChoice.bind(this)} />} />
+                <Route exact path="/visuals" render={(props) => <Visuals {...props} onClick={this.toView.bind(this)} />} />
+                <Route exact path="sign-in" component={SignIn} />
             </div>
         )
     }
