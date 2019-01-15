@@ -1,15 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-// import YearQ from "../YearQ/YearQ";
-// import TRRecruitmentSavings from "../TRRecruitmentSavings/TRRecruitmentSavings";
-// import PersonnelEfficiencies from "../PersonnelEfficiencies/PersonnelEfficiencies";
-// import Investment from "../Investment/Investment";
-// import PTEnrichment from "../PTEnrichment/PTEnrichment";
-// import ROI from "../ROI/ROI";
-// import Submit from "../Submit/Submit";
-// import Summary from "../Summary/Summary";
-// import Wrapper from "../Wrapper/Wrapper";
-// import MultiyearROI from "../MultiyearROI/MultiyearROI";
+import { BrowserRouter as Route } from "react-router-dom";
 import Form from "../../pages/Form";
 import SignIn from "../../pages/SignIn";
 import UserView from "../../pages/UserView";
@@ -71,8 +61,8 @@ class Parent extends Component {
         return (
             <div className="parent">
                 <Route exact path="/" component={Home} />
-                <Route exact path="/form" render={(props) => <Form {...props} sendForm={this.onChoice.bind(this)} />} />
-                <Route exact path="/user-view" render={(props) => <UserView {...props} onClick={this.onChoice.bind(this)} />} />
+                <Route exact path="/form" component={Form} />
+                <Route exact path="/user-view" component={UserView}/>
                 <Route exact path="/visuals" render={(props) => <Visuals {...props} onClick={this.toView.bind(this)} />} />
                 <Route exact path="sign-in" component={SignIn} />
             </div>
