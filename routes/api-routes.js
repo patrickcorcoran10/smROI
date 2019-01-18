@@ -10,8 +10,27 @@ module.exports = function(app) {
         });
     });
 
+    app.get("/api/search:companyName", function(req, res) {
+        db.multiyearROI.findAll({
+            where: {
+                companyName: req.params.companyName
+            }
+        })
+        .then(function(dbGoods) {
+            res.json(dbGoods)
+        });
+    })
+
     // Delete route for home page
-    app.delete
+    app.delete("/api/delete:id", function(req, res) {
+        db.multiyearROI.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(function(dbGoods) {
+            res.json(dbGoods)
+        });
+    });
 
     // Post route for Form page
 
