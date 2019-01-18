@@ -9,7 +9,7 @@ import React, { Component } from "react";
 // import Summary from "../Summary/Summary";
 // import Wrapper from "../Wrapper/Wrapper";
 // import MultiyearROI from "../MultiyearROI/MultiyearROI";
-import Form from "../../pages/Form";
+// import Form from "../../pages/Form";
 // import SignIn from "../../pages/SignIn";
 // import UserView from "../../pages/UserView";
 // import Visuals from "../../pages/Visuals";
