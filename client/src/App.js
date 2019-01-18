@@ -6,7 +6,7 @@ import UserView from "./pages/UserView";
 import Form from "./pages/Form";
 import Visuals from "./pages/Visuals";
 import Signin from "./pages/Signin";
-// import Navbar from "./components/Navbar/NavBar";
+import Navbar from "./components/Navbar/NavBar";
 import Footer from "./components/Footer/Footer";
 import Wrapper from "./components/Wrapper/Wrapper";
 // import Parent from "./components/Parent/Parent";
@@ -15,7 +15,7 @@ import Wrapper from "./components/Wrapper/Wrapper";
 const App = () => (
   <Router>
     <div>
-      {/* <Navbar /> */}
+      <Navbar />
       <Wrapper>
         <Route exact path="/" component={Home} />
         <Route exact path="/form" component={Form} />
