@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Route } from "react-router-dom";
 import Form from "../../pages/Form";
-import SignIn from "../../pages/SignIn";
+// import SignIn from "../../pages/SignIn";
 import UserView from "../../pages/UserView";
 import Visuals from "../../pages/Visuals";
 import Home from "../../pages/Home";
@@ -64,7 +64,7 @@ class Parent extends Component {
                 <Route exact path="/form" component={Form} />
                 <Route exact path="/user-view" component={UserView}/>
                 <Route exact path="/visuals" render={(props) => <Visuals {...props} onClick={this.toView.bind(this)} />} />
-                <Route exact path="sign-in" component={SignIn} />
+                {/* <Route exact path="sign-in" component={SignIn} /> */}
             </div>
         )
     }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
 import './App.css';
-import NavBar from "./components/NavBar/NavBar";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer/Footer";
 import Wrapper from "./components/Wrapper/Wrapper";
 import Parent from "./components/Parent/Parent";
@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <NavBar />
+          <Navbar />
             <Wrapper>
               <Parent />
             </Wrapper>
