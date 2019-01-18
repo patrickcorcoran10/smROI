@@ -5,45 +5,90 @@ class Home extends Component {
     constructor() {
         super()
         this.searchDB = this.searchDB.bind(this);
+        // this.onDelete = this.onDelete.bind(this);
+        // this.onUpdate = this.onUpdate.bind(this);
+        this.state = {
+            id: [],
+        };
     };
-    componentDidMount() {
-        // Remind yourself how this works. There will be a get route from the db here. And then we display with for loop into cards. 
-    }
 
     searchDB(event) {
         // this will include a get route that will search by company name and perhaps client name and client email.
+    };
+
+    componentDidMount() {
+        console.log("we are mounted");
+        axios.get("/api/home")
+        .then(res => {
+            console.log(res);
+            this.setState({ id: res.data })
+        })
     }
+    
+    // onDelete = (event) => {
+    //     event.preventDefault();
+    //     console.log(event.target.value);
+    //     var deleteId = {
+    //         deleteId: event.target.value,
+    //     }
+    //     axios.post("/delete", {
+    //         selected: deleteId
+    //     })
+    //     .then((response) => {
+    //         this.getData();
+    //     })
+    //     .catch(function (error) {
+    //         console.log(error);
+    //     });
+    // }
 
     render() {
         return(
             <div className="container">
                 <div className="row">
-                    <div className="col-md-12">
-                        <h6>Search Clients</h6>
-                        <input></input>
-                        <button onClick={this.searchDB}></button>
+                    <div className="col-md-4">
+                    </div>
+                    <div className="col-md-4">
+                        <h6>Search Specific Clients</h6>
+                        <input placeholder=" Company Name"></input>
+                        <button onClick={this.searchDB}>Search the Database</button>
                         <br />
                     </div>
+                    <div className="col-md-4">
+                    </div>
                 </div>
+                <br />
                 <div className="row">
-                    <div className="col-md-2">
+                    
+                    <div className="col-md-12">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>Company Name</th>
+                                    <th>Client Name</th>
+                                    <th>Client Email</th>
+                                    <th>Last Update</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
+                                </tr>
+                                {this.state.id.map((data, index) => (
+                                <tr>
+                                    <td>{data.companyName}</td>
+                                    <td>{data.clientName}</td>
+                                    <td>{data.clientEmail}</td>
+                                    <td>{data.updatedAt}</td>
+                                    <td><button value={data.id} onClick={this.onUpdate}>Update</button></td>
+                                    <td><button value={data.id} onClick={this.onDelete}>Delete</button></td>
+                                </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
-                    <div className="col-md-8">
-                    <div className="card">
-                        <h5 className="card-header">(Company Name)</h5>
-                        <div className="card-body">
-                            <h5 className="card-title">(Client Name)</h5>
-                            <p className="card-text">(With supporting text below as a natural lead-in to additional content.)</p>
-                            <button>View</button>
-                            <button>Update</button>
-                            <button>Delete</button>
-                        </div>
-                        </div>
-                    </div>
-                    <div className="col-md-2">
-                    </div>
+                    
                 </div>
+                <br />
             </div>
+            
         )
     }
 }

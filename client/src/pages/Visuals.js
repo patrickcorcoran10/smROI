@@ -3,9 +3,9 @@ import React, { Component } from "react";
 import "../components/MultiyearROI/MultiyearROI";
 
 class Visuals extends Component {
-    constructor() {
-        super();
-    }
+    // constructor() {
+    //     super();
+    // }
     render() {
         return(
             <div className="container">

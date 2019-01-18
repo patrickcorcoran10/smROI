@@ -4,17 +4,9 @@ import React, { Component } from "react";
 // import "./Navbar.css";
 
 class Navbar extends Component {
-
-  openNav = (event) => {
-    document.getElementById("mySidenav").style.width = "250px";
-  };
-  
-  closeNav = (event) => {
-    document.getElementById("mySidenav").style.width = "0";
-  };
-
   render () {
     return (
+  <div className="nb">
 
   <nav className="navbar navbar-expand-lg navbar-light bg-light">
     <div className="navbar-wide flex-container">
@@ -75,6 +67,8 @@ class Navbar extends Component {
   </div>
   </div> */}
   </nav>
+  </div>
+
 
 );
         }};
