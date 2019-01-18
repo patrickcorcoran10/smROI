@@ -236,6 +236,27 @@ class Form extends Component {
             });
         };
         resetButton(event) {
+                    this.refs.companyName.value = "";
+                    this.refs.name.value = "";
+                    this.refs.email.value = "";
+                    this.refs.lastFiscalYearEnd.value = "";
+                    this.refs.totEBOY.value = "";
+                    this.refs.totEEOY.value = "";
+                    this.refs.totEEOY1.value = "";
+                    this.refs.totEwVoluntaryExit.value = "";
+                    this.refs.avgTurnoverCostVoluntaryExit.value = "";
+                    this.refs.avgDaysPostingToAccept.value = "";
+                    this.refs.totRecruitingExpenses.value = "";
+                    this.refs.totHREmployeesAdminEmployeePrograms.value = "";
+                    this.refs.totHREmployeesAdminEmployeePrograms1.value = "";
+                    this.refs.percentageShareOfHREmployeesTimeAdminEmployeePrograms.value = "";
+                    this.refs.avgSalaryHREmployee.value = "";
+                    this.refs.avgAnnualSalaryGeneralEmployee.value = "";
+                    this.refs.suggestedUserMax.value = "";
+                    this.refs.annualSoftwareFees.value = "";
+                    this.refs.oneTimeImplimentationFee.value = "";
+                    this.refs.existingProvidersCost.value = "";
+                    this.refs.rewardsProgramOtherCompany.value = "";
             this.setState({
             // YearQ Inputs
                 companyName: "",
@@ -275,7 +296,7 @@ class Form extends Component {
             // ROI Inputs
                 savingsAssumption1: "",
                 savingsAssumption2: "",
-            })
+            });
             console.log("We have reset the state to ", this.state);
         };
     render() {
