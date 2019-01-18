@@ -1,37 +1,82 @@
+// import React from "react";
+// import { Link } from "react-router-dom";
 import React, { Component } from "react";
-import "./NavBar.css";
+import "./Navbar.css";
 
-class NavBar extends Component {
-    
-    render() {
-        return(
-            <div>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    {/* <a className="navbar-brand" href="#">smROI</a> */}
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav">
-                        <li className="nav-item active">
-                        <h5>{this.props.title}</h5>
-                            {/* <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a> */}
-                        </li>
-                        <li className="nav-item">
-                            {/* <a className="nav-link" href="#">Features</a> */}
-                        </li>
-                        <li className="nav-item">
-                            {/* <a className="nav-link" href="#">Pricing</a> */}
-                        </li>
-                        <li className="nav-item">
-                            {/* <a className="nav-link disabled" href="#">Disabled</a> */}
-                        </li>
-                        </ul>
-                    </div>
-                    </nav>
-            </div>
-        )
-    }
-}
+class Navbar extends Component {
 
-export default NavBar;
+  openNav = (event) => {
+    document.getElementById("mySidenav").style.width = "250px";
+  };
+  
+  closeNav = (event) => {
+    document.getElementById("mySidenav").style.width = "0";
+  };
+
+  render () {
+    return (
+
+  <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <div className="navbar-wide flex-container">
+    <Link className="navbar-brand" to="/">
+      Pat Corcoran
+    </Link>
+    <div>
+      <ul className="navbar-nav">
+        <li
+          className={
+            window.location.pathname === "/about"
+              ? "nav-item active"
+              : "nav-item"
+          }
+        >
+          <Link to="/about" className="nav-link">
+            About
+          </Link>
+        </li>
+        <li
+          className={
+            window.location.pathname === "/discover"
+              ? "nav-item active"
+              : "nav-item"
+          }
+        >
+          <Link to="/portfolio" className="nav-link">
+            Portfolio
+          </Link>
+        </li>
+        <li
+          className={
+            window.location.pathname === "/search"
+              ? "nav-item active"
+              : "nav-item"
+          }
+        >
+          <Link to="/contact" className="nav-link">
+            Contact
+          </Link>
+        </li>
+      </ul>
+    </div>
+    <span className="navbar-text ml-auto navbar-right">
+    <a href="https://github.com/patrickcorcoran10"><i className="fab fa-github"></i></a><a href="https://www.instagram.com/picsofandbypat/"><i className="fab fa-instagram"></i></a><a href="https://twitter.com/CorcoranPatJ"><i className="fab fa-twitter"></i></a>
+   </span>
+   </div>
+   <div className="sidenav-div">
+        <div className="navbar-brand">
+        <img src="toggle.png" alt="toggle" id="toggle" onClick={this.openNav}/><a id="pCorcoran" href="/">{'  '} Pat Corcoran</a>
+        </div>
+      <div id="mySidenav" className="sidenav">
+        <button className="closebtn" onClick={this.closeNav}>&times;</button>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/portfolio">Portfolio</a>
+        <a href="/contact">Contact</a>
+  </div>
+  </div>
+  </nav>
+
+);
+        }};
+
+export default Navbar;
