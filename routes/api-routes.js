@@ -2,11 +2,18 @@ const db = require("../models");
 
 module.exports = function(app) {
     // MultiyearROI Routes
-    app.get("/api/multiyearROI", function(req, res) {
-        db.MultiyearROI.findAll({}).then(function(dbDataPoints) {
+
+    // Get route for Home page. Will get all entries into the database.
+    app.get("/api/home", function(req, res) {
+        db.multiyearROI.findAll({}).then(function(dbDataPoints) {
             res.json(dbDataPoints);
         });
     });
+
+    // Delete route for home page
+    app.delete
+
+    // Post route for Form page
 
     app.post("/api/multiyearROI", function(req, res) {
         db.multiyearROI.create({
@@ -46,33 +53,35 @@ module.exports = function(app) {
         // // ROI Inputs
             savingsAssumption1: req.body.savingsAssumption1,
             savingsAssumption2: req.body.savingsAssumption2,
-        }).then(function(dbMultiyearROI) {
-            res.json(dbMultiyearROI);
+        }).then(function(dbGoods) {
+            res.json(dbGoods);
         });
-    })
+    });
 
+    
 
+// //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Start.js Routes
-    app.get("/api/dataPoints", function(req, res) {
-        db.DataPoints.findAll({}).then(function(dbDataPoints) {
-            res.json(dbDataPoints);
-        });
-    });
+    // app.get("/api/dataPoints", function(req, res) {
+    //     db.DataPoints.findAll({}).then(function(dbDataPoints) {
+    //         res.json(dbDataPoints);
+    //     });
+    // });
 
-    app.post("/api/dataPoints", function(req, res) {
-        db.dataPoints.create({
-            prospectName: req.body.prospectName,
-            planSelect: req.body.planSelect,
-            numOfUsers: req.body.numOfUsers,
-            employeeCost: req.body.employeeCost,
-            dataCollection: req.body.dataCollection,
-            dataProcessing: req.body.dataProcessing,
-            dataSecurity: req.body.dataSecurity,
-            emailVolume: req.body.emailVolume,
-            ROI: req.body.ROI,
-            savingsPerUser: req.body.savingsPerUser
-        }).then(function(dbDataPoints) {
-            res.json(dbDataPoints);
-        });
-    });
+    // app.post("/api/dataPoints", function(req, res) {
+    //     db.dataPoints.create({
+    //         prospectName: req.body.prospectName,
+    //         planSelect: req.body.planSelect,
+    //         numOfUsers: req.body.numOfUsers,
+    //         employeeCost: req.body.employeeCost,
+    //         dataCollection: req.body.dataCollection,
+    //         dataProcessing: req.body.dataProcessing,
+    //         dataSecurity: req.body.dataSecurity,
+    //         emailVolume: req.body.emailVolume,
+    //         ROI: req.body.ROI,
+    //         savingsPerUser: req.body.savingsPerUser
+    //     }).then(function(dbDataPoints) {
+    //         res.json(dbDataPoints);
+    //     });
+    // });
 };

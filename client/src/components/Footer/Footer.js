@@ -5,7 +5,7 @@ class Footer extends Component {
     render() {
         return(
             <div>
-                    <span>PCP &#169; 2019</span>
+                    <p className="footer">PCP &#169; 2019</p>
             </div>
         )
     }
