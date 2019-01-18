@@ -5,7 +5,7 @@ class Home extends Component {
     constructor() {
         super()
         this.searchDB = this.searchDB.bind(this);
-        // this.onDelete = this.onDelete.bind(this);
+        this.onDelete = this.onDelete.bind(this);
         // this.onUpdate = this.onUpdate.bind(this);
         this.state = {
             id: [],
@@ -23,24 +23,22 @@ class Home extends Component {
             console.log(res);
             this.setState({ id: res.data })
         })
-    }
+    };
     
-    // onDelete = (event) => {
-    //     event.preventDefault();
-    //     console.log(event.target.value);
-    //     var deleteId = {
-    //         deleteId: event.target.value,
-    //     }
-    //     axios.post("/delete", {
-    //         selected: deleteId
-    //     })
-    //     .then((response) => {
-    //         this.getData();
-    //     })
-    //     .catch(function (error) {
-    //         console.log(error);
-    //     });
-    // }
+    onDelete = (event) => {
+        event.preventDefault();
+        console.log(event.target.value);
+        var deleteId = event.target.value;
+        
+        axios.delete("/api/delete" + deleteId)
+        .then((response) => {
+            this.componentDidMount();
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+        
+    };
 
     render() {
         return(

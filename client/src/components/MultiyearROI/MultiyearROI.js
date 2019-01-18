@@ -74,7 +74,7 @@ class MultiyearROI extends Component {
         let overallEmployeeTurnoverPlusOne = (.126 * (1 - (parseInt(this.refs.productTurnoverSavings.value))));
         let impactOverallEmployeeTurnoverPlusOne = overallEmployeeTurnoverPlusOne - 12.6;
         let totEmployeesWithVoluntaryExitPlusOnewithoutCompany = .126 * ((totEBOYwithoutCoYearPlusOne + totEBOYwithoutCoYearPlusOne)/2);
-        let totEmployeesWithVoluntaryExitPlusOnewithCompany = .114 * ((totEBOYwithoutCoYearPlusOne + this.state.totEEOY1.value)/2);
+        // let totEmployeesWithVoluntaryExitPlusOnewithCompany = .114 * ((totEBOYwithoutCoYearPlusOne + this.state.totEEOY1.value)/2);
         this.setState({
             totEBOY: this.refs.totEBOY.value,
             totEBOYwoCoYearPlusOne: totEBOYwithoutCoYearPlusOne,

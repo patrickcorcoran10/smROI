@@ -11,7 +11,15 @@ module.exports = function(app) {
     });
 
     // Delete route for home page
-    app.delete
+    app.delete("/api/delete:id", function(req, res) {
+        db.multiyearROI.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(function(dbGoods) {
+            res.json(dbGoods)
+        });
+    });
 
     // Post route for Form page
 
