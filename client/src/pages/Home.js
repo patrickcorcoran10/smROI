@@ -13,8 +13,27 @@ class Home extends Component {
     };
 
     searchDB(event) {
-        // this will include a get route that will search by company name and perhaps client name and client email.
+        console.log(this.refs.searchTerm.value)
+        
     };
+
+    search(event) {
+        event.preventDefault();
+        let searchTerm = this.refs.searchTerm.value;
+        console.log("Now we're searching", event.target.value);
+        axios.get("/api/search" + searchTerm).then(res => {
+        console.log(res);
+        
+        if (res === null) {
+            alert("No records with that name.");
+        }
+        else {
+            alert(
+                "You did it"
+            );
+        };
+    });
+    }
 
     componentDidMount() {
         console.log("we are mounted");
@@ -37,6 +56,7 @@ class Home extends Component {
         .catch(function (error) {
             console.log(error);
         });
+        alert("You have deleted a record");
         
     };
 
@@ -48,8 +68,8 @@ class Home extends Component {
                     </div>
                     <div className="col-md-4">
                         <h6>Search Specific Clients</h6>
-                        <input placeholder=" Company Name"></input>
-                        <button onClick={this.searchDB}>Search the Database</button>
+                        <input ref="searchTerm" onChange={this.searchDB} placeholder=" Company Name"></input>
+                        <button onClick={this.search.bind(this)}>Search the Database</button>
                         <br />
                     </div>
                     <div className="col-md-4">
