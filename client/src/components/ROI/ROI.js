@@ -1,8 +1,8 @@
 // Dependencies
 import React, { Component } from "react";
-import "../components/MultiyearROI/MultiyearROI";
+import "../MultiyearROI/MultiyearROI";
 
-class Visuals extends Component {
+class ROI extends Component {
     constructor() {
         super();
     }
@@ -185,4 +185,4 @@ class Visuals extends Component {
         )
     }
 }
-export default Visuals;
+export default ROI;

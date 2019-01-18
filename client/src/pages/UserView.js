@@ -1,6 +1,6 @@
 // Dependencies
 import React, { Component } from "react";
-import "./MultiyearROI.css";
+import "../components/MultiyearROI/MultiyearROI.css";
 import axios from "axios";
 
 class MultiyearROI extends Component {
