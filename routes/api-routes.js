@@ -10,6 +10,17 @@ module.exports = function(app) {
         });
     });
 
+    app.get("/api/view:id", function(req, res) {
+        db.multiyearROI.findAll({
+            where: {
+                id: req.params.id
+            }
+        })
+        .then(function(dbGoods) {
+            res.json(dbGoods)
+        });
+    });
+
     app.get("/api/search:companyName", function(req, res) {
         db.multiyearROI.findAll({
             where: {

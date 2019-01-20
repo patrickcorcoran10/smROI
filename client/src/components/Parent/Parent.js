@@ -1,18 +1,11 @@
-import React, { Component } from "react";
-// import YearQ from "../YearQ/YearQ";
-// import TRRecruitmentSavings from "../TRRecruitmentSavings/TRRecruitmentSavings";
-// import PersonnelEfficiencies from "../PersonnelEfficiencies/PersonnelEfficiencies";
-// import Investment from "../Investment/Investment";
-// import PTEnrichment from "../PTEnrichment/PTEnrichment";
-// import ROI from "../ROI/ROI";
-// import Submit from "../Submit/Submit";
-// import Summary from "../Summary/Summary";
-// import Wrapper from "../Wrapper/Wrapper";
-// import MultiyearROI from "../MultiyearROI/MultiyearROI";
-// import Form from "../../pages/Form";
-// import SignIn from "../../pages/SignIn";
-// import UserView from "../../pages/UserView";
-// import Visuals from "../../pages/Visuals";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Home from "../../pages/Home.js";
+import UserView from "../../pages/UserView";
+import Form from "../../pages/Form";
+import Visuals from "../../pages/Visuals";
+import Signin from "../../pages/Signin";
+
 
 class Parent extends Component {
     constructor(props) {
@@ -55,36 +48,19 @@ class Parent extends Component {
             savingsAssumption2: "",
         };
     };
-    companyYear(companyName, lastFiscalYearEnd) {
+    onUpdate(idChosen) {
         this.setState({
-            companyName: companyName,
-            lastFiscalYearEnd: lastFiscalYearEnd,
+            id: idChosen
         })
-        
     };
-
-    
-
     render() {
         return (
             <div className="parent">
-                {/* <Wrapper > */}
-                    {/* <YearQ 
-                     click={this.companyYear.bind(this)}
-                    />
-                    <TRRecruitmentSavings />
-                    <PersonnelEfficiencies />
-                    <Investment />
-                    <PTEnrichment />
-                    <ROI />
-                    <Submit />
-                    <Summary /> */}
-                    {/* <MultiyearROI /> */}
-                    <Form />
-                    {/* <SignIn /> */}
-                    {/* <UserView /> */}
-                    {/* <Visuals /> */}
-                {/* </Wrapper> */}
+                <Route exact path="/" render={(props) => <Home {...props} click={this.onUpdate.bind(this)} />} />
+                <Route exact path="/form" component={Form} />
+                <Route exact path="/view" render={(props) => <UserView {...props} id={this.state.id} />} />
+                <Route exact path="/visuals" component={Visuals} />
+                <Route exact path="/signin" component={Signin} />
             </div>
         )
     }
