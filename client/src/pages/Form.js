@@ -300,8 +300,16 @@ class Form extends Component {
             console.log("We have reset the state to ", this.state);
         };
     render() {
+        const style= {
+            container: {
+                height: '650px',
+                color: 'orange',
+                width: '950px',
+                paddingLeft: '40px'
+            }
+        }
         return (
-            <div className="container">
+            <div style={style.container}>
                 <div className="row">
                     <div className="col-md-12">
                         <h4>Please fill out this form with information pertinent to your organization.</h4>
