@@ -12,7 +12,9 @@ class Parent extends Component {
         super(props);
 
     this.state = {
-        companyName: "",
+            companyName: "",
+            clientName: "",
+            clientEmail: "",
         // Turnover and Recruitment Savings
             // Employee Turnover Cost Savings Inputs
             lastFiscalYearEnd: "",
@@ -50,7 +52,43 @@ class Parent extends Component {
     };
     onUpdate(idChosen) {
         this.setState({
-            id: idChosen
+            id: idChosen,
+            companyName: "",
+            clientName: "",
+            clientEmail: "",
+        // Turnover and Recruitment Savings
+            // Employee Turnover Cost Savings Inputs
+            lastFiscalYearEnd: "",
+            totEBOY: "",
+            totEEOY: "",
+            totEEOY1: "",
+            totEwVoluntaryExit: "",
+            avgTurnoverCostVoluntaryExit: "",
+            productTurnoverSavings: "",
+            // Recruiting Cost Inputs
+            avgDaysPostingToAccept: "",
+            totRecruitingExpenses: "",
+            productRecruitingSavings: "",
+        // Personnel Efficiencies
+            // HR Admin Time Savings
+            totHREmployeesAdminEmployeePrograms: "",
+            totHREmployeesAdminEmployeePrograms1: "",
+            percentageShareOfHREmployeesTimeAdminEmployeePrograms: "",
+            avgSalaryHREmployee: "",
+            reductionManagingProgramsHREmployee: "",
+            // Employee Productiving Savings
+            avgAnnualSalaryGeneralEmployee: "",
+            increaseGeneralEmployeeProductivity: "",
+        // Investment Inputs
+            suggestedUserMax: "",
+            annualSoftwareFees: "",
+            oneTimeImplimentationFee: "",
+        // Program and Tool Enrichment Inputs
+            existingProvidersCost: "",
+            rewardsProgramOtherCompany: "",
+        // ROI Inputs
+            savingsAssumption1: "",
+            savingsAssumption2: "",
         })
     };
     render() {

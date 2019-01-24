@@ -1,15 +1,75 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Modal from 'react-modal';
+
+const customStyles = {
+    content : {
+      top                   : '50%',
+      left                  : '50%',
+      right                 : 'auto',
+      bottom                : 'auto',
+      marginRight           : '-50%',
+      transform             : 'translate(-50%, -50%)'
+    }
+  };
+
+Modal.setAppElement('#root');
 
 class Home extends Component {
     constructor(props) {
         super(props)
         this.searchDB = this.searchDB.bind(this);
         this.onDelete = this.onDelete.bind(this);
-        // this.onUpdate = this.onUpdate.bind(this);
+        this.onUpdate = this.onUpdate.bind(this);
+        this.onModal = this.openModal.bind(this);
+        this.afterOpenModal = this.afterOpenModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
         this.state = {
-            id: [],
-        };
+            // YearQ Inputs
+                modalIsOpen: false,
+                id: [],
+                companyName: "",
+                clientName: '',
+                clientEmail: '',
+                tableYear: "",
+                tableYearPlusOne: "",
+                tableYearPlusTwo: "",
+                tableYearPlusThree: "",
+                lastFiscalYearEnd: "",
+            // Turnover and Recruitment Savings
+                // Employee Turnover Cost Savings Inputs
+                totEBOY: "",
+                totEEOY: "",
+                totEEOY1: "",
+                totEwVoluntaryExit: "",
+                avgTurnoverCostVoluntaryExit: "",
+                productTurnoverSavings: "",
+                // Recruiting Cost Inputs
+                avgDaysPostingToAccept: "",
+                totRecruitingExpenses: "",
+                productRecruitingSavings: "",
+            // Personnel Efficiencies
+                // HR Admin Time Savings
+                totHREmployeesAdminEmployeePrograms: "",
+                totHREmployeesAdminEmployeePrograms1: "",
+                percentageShareOfHREmployeesTimeAdminEmployeePrograms: "",
+                avgSalaryHREmployee: "",
+                reductionManagingProgramsHREmployee: "",
+                // Employee Productiving Savings
+                avgAnnualSalaryGeneralEmployee: "",
+                increaseGeneralEmployeeProductivity: "",
+            // Investment Inputs
+                suggestedUserMax: "",
+                annualSoftwareFees: "",
+                oneTimeImplimentationFee: "",
+            // Program and Tool Enrichment Inputs
+                existingProvidersCost: "",
+                rewardsProgramOtherCompany: "",
+            // ROI Inputs
+                savingsAssumption1: "",
+                savingsAssumption2: "",
+            };
+    
     };
     componentDidMount() {
         console.log("we are mounted");
@@ -21,6 +81,23 @@ class Home extends Component {
     };
     searchDB(event) {
         console.log(this.refs.searchTerm.value)
+    };
+    openModal(event) {
+        event.preventDefault();
+        this.setState({
+            modalIsOpen: true,
+        }, () => {
+            console.log("modal time")
+        })
+    };
+    afterOpenModal() {
+        this.subtite.style.color = 'black';
+    };
+    closeModal() {
+        this.setState({
+            modalIsOpen: false
+        });
+        this.props.history.push('/');
     };
     search(event) {
         event.preventDefault();
@@ -48,6 +125,7 @@ class Home extends Component {
         event.preventDefault();
         console.log(event.target.value);
         var deleteId = event.target.value;
+
         
         axios.delete("/api/delete" + deleteId)
         .then((response) => {
@@ -72,7 +150,8 @@ class Home extends Component {
                 height: '650px',
                 color: 'orange',
                 width: '950px',
-                paddingLeft: '40px'
+                // paddingLeft: '40px',
+                align: 'center'
             }
         }
         return(
@@ -110,13 +189,30 @@ class Home extends Component {
                                     <td key={data.clientEmail}>{data.clientEmail}</td>
                                     <td key={data.updatedAt}>{data.updatedAt}</td>
                                     <td><button value={data.id} onClick={this.onUpdate}>Update</button></td>
-                                    <td><button value={data.id} onClick={this.onDelete}>Delete</button></td>
+                                    <td><button value={data.id} onClick={this.openModal}>Delete</button></td>
                                 </tr>
                                 ))}
                             </tbody>
                         </table>
                     </div>
                 </div>
+                <Modal
+                  isOpen={this.state.modalIsOpen}
+                  onAfterOpen={this.afterOpenModal}
+                  onRequestClose={this.closeModal}
+                  style={customStyles}
+                  contentLabel="Example Modal"
+                  >
+                    <h2>Are you sure you want to delete this record?</h2>
+                    <form>
+                        <div className="text-center">
+                            <button className="btn btn-outline-dark" onClick={this.closeModal}>Yes, delete record.</button>
+                        </div>
+                        <div className="text-center">
+                            <button className="btn btn-outline-dark" onClick={this.componentDidMount}>No, keep the record.</button>
+                        </div>
+                    </form>
+                  </Modal>
                 <br />
             </div>
             
