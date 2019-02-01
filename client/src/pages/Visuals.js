@@ -7,8 +7,13 @@ class Visuals extends Component {
     //     super();
     // }
     render() {
+        const style = {
+            container: {
+                paddingTop: '80px'
+            }
+        }
         return(
-            <div className="container">
+            <div style={style.container} className="container">
                 <div className="roi">
                     <div className="row" id="roi">
                         <div className="col-md-5">

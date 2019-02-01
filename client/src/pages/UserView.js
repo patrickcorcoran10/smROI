@@ -8,241 +8,175 @@ class UserView extends Component {
         super(props);
     
     this.state = {
-        // YearQ Inputs
-            companyName: "",
-            tableYear: "",
-            tableYearPlusOne: "",
-            tableYearPlusTwo: "",
-            tableYearPlusThree: "",
-            lastFiscalYearEnd: "",
-        // Turnover and Recruitment Savings
-            // Employee Turnover Cost Savings Inputs
-            totEBOY: "",
-            totEEOY: "",
-            totEEOY1: "",
-            totEwVoluntaryExit: "",
-            avgTurnoverCostVoluntaryExit: "",
-            productTurnoverSavings: "",
-            // Recruiting Cost Inputs
-            avgDaysPostingToAccept: "",
-            totRecruitingExpenses: "",
-            productRecruitingSavings: "",
-        // Personnel Efficiencies
-            // HR Admin Time Savings
-            totHREmployeesAdminEmployeePrograms: "",
-            totHREmployeesAdminEmployeePrograms1: "",
-            percentageShareOfHREmployeesTimeAdminEmployeePrograms: "",
-            avgSalaryHREmployee: "",
-            reductionManagingProgramsHREmployee: "",
-            // Employee Productiving Savings
-            avgAnnualSalaryGeneralEmployee: "",
-            increaseGeneralEmployeeProductivity: "",
-        // Investment Inputs
-            suggestedUserMax: "",
-            annualSoftwareFees: "",
-            oneTimeImplimentationFee: "",
-        // Program and Tool Enrichment Inputs
-            existingProvidersCost: "",
-            rewardsProgramOtherCompany: "",
-        // ROI Inputs
-            savingsAssumption1: "",
-            savingsAssumption2: "",
+        inputs: {},
         };
     };
 
-    companyYear = (event) => {
-        event.preventDefault(); 
-        let year = parseInt(this.refs.lastFiscalYearEnd.value.slice(0,4));
-        let yearPlusOne = year + 1;
-        let yearPlusTwo = year +2;
-        let yearPlusThree = year + 3;
-        this.setState({
-            companyName: this.refs.companyName.value,
-            lastFiscalYearEnd: this.refs.lastFiscalYearEnd.value,
-            tableYear: "FY-"+year,
-            tableYearPlusOne: "FY-"+yearPlusOne,
-            tableYearPlusTwo: "FY-"+yearPlusTwo,
-            tableYearPlusThree: "FY-"+yearPlusThree,
-        }, () => {
-        console.log(this.state);    
-        });
-    }
-    turnoverRecruitmentSavings = (event) => {
-        event.preventDefault();
-        let totEBOYwithoutCoYearPlusOne = this.refs.totEEOY.value;
-        let totEBOYwithCoYearPlusOne = totEBOYwithoutCoYearPlusOne;
-        let overallEmployeeTurnoverPlusOne = (.126 * (1 - (parseInt(this.refs.productTurnoverSavings.value))));
-        let impactOverallEmployeeTurnoverPlusOne = overallEmployeeTurnoverPlusOne - 12.6;
-        let totEmployeesWithVoluntaryExitPlusOnewithoutCompany = .126 * ((totEBOYwithoutCoYearPlusOne + totEBOYwithoutCoYearPlusOne)/2);
-        // let totEmployeesWithVoluntaryExitPlusOnewithCompany = .114 * ((totEBOYwithoutCoYearPlusOne + this.state.totEEOY1.value)/2);
-        this.setState({
-            totEBOY: this.refs.totEBOY.value,
-            totEBOYwoCoYearPlusOne: totEBOYwithoutCoYearPlusOne,
-            totEBOYwithCoYearPlusOne: totEBOYwithCoYearPlusOne,
-            totEEOY: this.refs.totEEOY.value,
-            totEEOY1: this.refs.totEEOY1.value,
-            totEmployeesWithVoluntaryExitPlusOnewithoutCompany: totEmployeesWithVoluntaryExitPlusOnewithoutCompany,
-            totEwVoluntaryExit: this.refs.totEwVoluntaryExit.value,
-            avgTurnoverCostVoluntaryExit: this.refs.avgTurnoverCostVoluntaryExit.value,
-            productTurnoverSavings: this.refs.productTurnoverSavings.value,
-            overallEmployeeTurnoverPlusOne: overallEmployeeTurnoverPlusOne,
-            impactOverallEmployeeTurnoverPlusOne: impactOverallEmployeeTurnoverPlusOne,
-        }, () => {
-            console.log(this.state);
+    // companyYear = (event) => {
+    //     event.preventDefault(); 
+    //     let year = parseInt(this.refs.lastFiscalYearEnd.value.slice(0,4));
+    //     let yearPlusOne = year + 1;
+    //     let yearPlusTwo = year +2;
+    //     let yearPlusThree = year + 3;
+    //     this.setState({
+    //         companyName: this.refs.companyName.value,
+    //         lastFiscalYearEnd: this.refs.lastFiscalYearEnd.value,
+    //         tableYear: "FY-"+year,
+    //         tableYearPlusOne: "FY-"+yearPlusOne,
+    //         tableYearPlusTwo: "FY-"+yearPlusTwo,
+    //         tableYearPlusThree: "FY-"+yearPlusThree,
+    //     }, () => {
+    //     console.log(this.state);    
+    //     });
+    // }
+    // turnoverRecruitmentSavings = (event) => {
+    //     event.preventDefault();
+    //     let totEBOYwithoutCoYearPlusOne = this.refs.totEEOY.value;
+    //     let totEBOYwithCoYearPlusOne = totEBOYwithoutCoYearPlusOne;
+    //     let overallEmployeeTurnoverPlusOne = (.126 * (1 - (parseInt(this.refs.productTurnoverSavings.value))));
+    //     let impactOverallEmployeeTurnoverPlusOne = overallEmployeeTurnoverPlusOne - 12.6;
+    //     let totEmployeesWithVoluntaryExitPlusOnewithoutCompany = .126 * ((totEBOYwithoutCoYearPlusOne + totEBOYwithoutCoYearPlusOne)/2);
+    //     // let totEmployeesWithVoluntaryExitPlusOnewithCompany = .114 * ((totEBOYwithoutCoYearPlusOne + this.state.totEEOY1.value)/2);
+    //     this.setState({
+    //         totEBOY: this.refs.totEBOY.value,
+    //         totEBOYwoCoYearPlusOne: totEBOYwithoutCoYearPlusOne,
+    //         totEBOYwithCoYearPlusOne: totEBOYwithCoYearPlusOne,
+    //         totEEOY: this.refs.totEEOY.value,
+    //         totEEOY1: this.refs.totEEOY1.value,
+    //         totEmployeesWithVoluntaryExitPlusOnewithoutCompany: totEmployeesWithVoluntaryExitPlusOnewithoutCompany,
+    //         totEwVoluntaryExit: this.refs.totEwVoluntaryExit.value,
+    //         avgTurnoverCostVoluntaryExit: this.refs.avgTurnoverCostVoluntaryExit.value,
+    //         productTurnoverSavings: this.refs.productTurnoverSavings.value,
+    //         overallEmployeeTurnoverPlusOne: overallEmployeeTurnoverPlusOne,
+    //         impactOverallEmployeeTurnoverPlusOne: impactOverallEmployeeTurnoverPlusOne,
+    //     }, () => {
+    //         console.log(this.state);
 
-        })
-    }
+    //     })
+    // }
 
-    calculate = (event) => {
-        console.log("Now we're clicking");
-        event.preventDefault();
-        this.setState({
-                companyName: this.refs.companyName.value,
-            // Turnover and Recruitment Savings
-                // Employee Turnover Cost Savings Inputs
-                lastFiscalYearEnd: this.refs.lastFiscalYearEnd.value,
-                totEBOY: this.refs.totEBOY.value,
-                totEEOY: this.refs.totEEOY.value,
-                totEEOY1: this.refs.totEEOY1.value,
-                totEwVoluntaryExit: this.refs.totEwVoluntaryExit.value,
-                avgTurnoverCostVoluntaryExit: this.refs.avgTurnoverCostVoluntaryExit.value,
-                productTurnoverSavings: this.refs.productTurnoverSavings.value,
-                // Recruiting Cost Inputs
-                avgDaysPostingToAccept: this.refs.avgDaysPostingToAccept.value,
-                totRecruitingExpenses: this.refs.totRecruitingExpenses.value,
-                productRecruitingSavings: this.refs.productRecruitingSavings.value,
-            // Personnel Efficiencies
-                // HR Admin Time Savings
-                totHREmployeesAdminEmployeePrograms: this.refs.totHREmployeesAdminEmployeePrograms.value,
-                totHREmployeesAdminEmployeePrograms1: this.refs.totHREmployeesAdminEmployeePrograms1.value,
-                percentageShareOfHREmployeesTimeAdminEmployeePrograms: this.refs.percentageShareOfHREmployeesTimeAdminEmployeePrograms.value,
-                avgSalaryHREmployee: this.refs.avgSalaryHREmployee.value,
-                reductionManagingProgramsHREmployee: this.refs.reductionManagingProgramsHREmployee.value,
-                // Employee Productiving Savings
-                avgAnnualSalaryGeneralEmployee: this.refs.avgAnnualSalaryGeneralEmployee.value,
-                increaseGeneralEmployeeProductivity: this.refs.increaseGeneralEmployeeProductivity.value,
-            // Investment Inputs
-                suggestedUserMax: this.refs.suggestedUserMax.value,
-                annualSoftwareFees: this.refs.annualSoftwareFees.value,
-                oneTimeImplimentationFee: this.refs.oneTimeImplimentationFee.value,
-            // Program and Tool Enrichment Inputs
-                existingProvidersCost: this.refs.existingProvidersCost.value,
-                rewardsProgramOtherCompany: this.refs.rewardsProgramOtherCompany.value,
-            // ROI Inputs
-                savingsAssumption1: this.refs.savingsAssumption1.value,
-                savingsAssumption2: this.refs.savingsAssumption2.value,
-        }, () => {
-            console.log(this.state);
+    // calculate = (event) => {
+    //     console.log("Now we're clicking");
+    //     event.preventDefault();
+    //     this.setState({
+    //             companyName: this.refs.companyName.value,
+    //         // Turnover and Recruitment Savings
+    //             // Employee Turnover Cost Savings Inputs
+    //             lastFiscalYearEnd: this.refs.lastFiscalYearEnd.value,
+    //             totEBOY: this.refs.totEBOY.value,
+    //             totEEOY: this.refs.totEEOY.value,
+    //             totEEOY1: this.refs.totEEOY1.value,
+    //             totEwVoluntaryExit: this.refs.totEwVoluntaryExit.value,
+    //             avgTurnoverCostVoluntaryExit: this.refs.avgTurnoverCostVoluntaryExit.value,
+    //             productTurnoverSavings: this.refs.productTurnoverSavings.value,
+    //             // Recruiting Cost Inputs
+    //             avgDaysPostingToAccept: this.refs.avgDaysPostingToAccept.value,
+    //             totRecruitingExpenses: this.refs.totRecruitingExpenses.value,
+    //             productRecruitingSavings: this.refs.productRecruitingSavings.value,
+    //         // Personnel Efficiencies
+    //             // HR Admin Time Savings
+    //             totHREmployeesAdminEmployeePrograms: this.refs.totHREmployeesAdminEmployeePrograms.value,
+    //             totHREmployeesAdminEmployeePrograms1: this.refs.totHREmployeesAdminEmployeePrograms1.value,
+    //             percentageShareOfHREmployeesTimeAdminEmployeePrograms: this.refs.percentageShareOfHREmployeesTimeAdminEmployeePrograms.value,
+    //             avgSalaryHREmployee: this.refs.avgSalaryHREmployee.value,
+    //             reductionManagingProgramsHREmployee: this.refs.reductionManagingProgramsHREmployee.value,
+    //             // Employee Productiving Savings
+    //             avgAnnualSalaryGeneralEmployee: this.refs.avgAnnualSalaryGeneralEmployee.value,
+    //             increaseGeneralEmployeeProductivity: this.refs.increaseGeneralEmployeeProductivity.value,
+    //         // Investment Inputs
+    //             suggestedUserMax: this.refs.suggestedUserMax.value,
+    //             annualSoftwareFees: this.refs.annualSoftwareFees.value,
+    //             oneTimeImplimentationFee: this.refs.oneTimeImplimentationFee.value,
+    //         // Program and Tool Enrichment Inputs
+    //             existingProvidersCost: this.refs.existingProvidersCost.value,
+    //             rewardsProgramOtherCompany: this.refs.rewardsProgramOtherCompany.value,
+    //         // ROI Inputs
+    //             savingsAssumption1: this.refs.savingsAssumption1.value,
+    //             savingsAssumption2: this.refs.savingsAssumption2.value,
+    //     }, () => {
+    //         console.log(this.state);
 
-        })
-        axios.post("/api/multiyearROI", {
-                companyName: this.refs.companyName.value,
-            // Turnover and Recruitment Savings
-                // Employee Turnover Cost Savings Inputs
-                lastFiscalYearEnd: this.refs.lastFiscalYearEnd.value,
-                totEBOY: this.refs.totEBOY.value,
-                totEEOY: this.refs.totEEOY.value,
-                totEEOY1: this.refs.totEEOY1.value,
-                totEwVoluntaryExit: this.refs.totEwVoluntaryExit.value,
-                avgTurnoverCostVoluntaryExit: this.refs.avgTurnoverCostVoluntaryExit.value,
-                productTurnoverSavings: this.refs.productTurnoverSavings.value,
-                // Recruiting Cost Inputs
-                avgDaysPostingToAccept: this.refs.avgDaysPostingToAccept.value,
-                totRecruitingExpenses: this.refs.totRecruitingExpenses.value,
-                productRecruitingSavings: this.refs.productRecruitingSavings.value,
-            // Personnel Efficiencies
-                // HR Admin Time Savings
-                totHREmployeesAdminEmployeePrograms: this.refs.totHREmployeesAdminEmployeePrograms.value,
-                totHREmployeesAdminEmployeePrograms1: this.refs.totHREmployeesAdminEmployeePrograms1.value,
-                percentageShareOfHREmployeesTimeAdminEmployeePrograms: this.refs.percentageShareOfHREmployeesTimeAdminEmployeePrograms.value,
-                avgSalaryHREmployee: this.refs.avgSalaryHREmployee.value,
-                reductionManagingProgramsHREmployee: this.refs.reductionManagingProgramsHREmployee.value,
-                // Employee Productiving Savings
-                avgAnnualSalaryGeneralEmployee: this.refs.avgAnnualSalaryGeneralEmployee.value,
-                increaseGeneralEmployeeProductivity: this.refs.increaseGeneralEmployeeProductivity.value,
-            // Investment Inputs
-                suggestedUserMax: this.refs.suggestedUserMax.value,
-                annualSoftwareFees: this.refs.annualSoftwareFees.value,
-                oneTimeImplimentationFee: this.refs.oneTimeImplimentationFee.value,
-            // Program and Tool Enrichment Inputs
-                existingProvidersCost: this.refs.existingProvidersCost.value,
-                rewardsProgramOtherCompany: this.refs.rewardsProgramOtherCompany.value,
-            // ROI Inputs
-                savingsAssumption1: this.refs.savingsAssumption1.value,
-                savingsAssumption2: this.refs.savingsAssumption2.value,
-        })
-        .then(function(response) {
-            console.log(response);
-        })
-        .catch(function(error) {
-            console.log(error);
-        });
-    }
+    //     })
+    //     axios.post("/api/multiyearROI", {
+    //             companyName: this.refs.companyName.value,
+    //         // Turnover and Recruitment Savings
+    //             // Employee Turnover Cost Savings Inputs
+    //             lastFiscalYearEnd: this.refs.lastFiscalYearEnd.value,
+    //             totEBOY: this.refs.totEBOY.value,
+    //             totEEOY: this.refs.totEEOY.value,
+    //             totEEOY1: this.refs.totEEOY1.value,
+    //             totEwVoluntaryExit: this.refs.totEwVoluntaryExit.value,
+    //             avgTurnoverCostVoluntaryExit: this.refs.avgTurnoverCostVoluntaryExit.value,
+    //             productTurnoverSavings: this.refs.productTurnoverSavings.value,
+    //             // Recruiting Cost Inputs
+    //             avgDaysPostingToAccept: this.refs.avgDaysPostingToAccept.value,
+    //             totRecruitingExpenses: this.refs.totRecruitingExpenses.value,
+    //             productRecruitingSavings: this.refs.productRecruitingSavings.value,
+    //         // Personnel Efficiencies
+    //             // HR Admin Time Savings
+    //             totHREmployeesAdminEmployeePrograms: this.refs.totHREmployeesAdminEmployeePrograms.value,
+    //             totHREmployeesAdminEmployeePrograms1: this.refs.totHREmployeesAdminEmployeePrograms1.value,
+    //             percentageShareOfHREmployeesTimeAdminEmployeePrograms: this.refs.percentageShareOfHREmployeesTimeAdminEmployeePrograms.value,
+    //             avgSalaryHREmployee: this.refs.avgSalaryHREmployee.value,
+    //             reductionManagingProgramsHREmployee: this.refs.reductionManagingProgramsHREmployee.value,
+    //             // Employee Productiving Savings
+    //             avgAnnualSalaryGeneralEmployee: this.refs.avgAnnualSalaryGeneralEmployee.value,
+    //             increaseGeneralEmployeeProductivity: this.refs.increaseGeneralEmployeeProductivity.value,
+    //         // Investment Inputs
+    //             suggestedUserMax: this.refs.suggestedUserMax.value,
+    //             annualSoftwareFees: this.refs.annualSoftwareFees.value,
+    //             oneTimeImplimentationFee: this.refs.oneTimeImplimentationFee.value,
+    //         // Program and Tool Enrichment Inputs
+    //             existingProvidersCost: this.refs.existingProvidersCost.value,
+    //             rewardsProgramOtherCompany: this.refs.rewardsProgramOtherCompany.value,
+    //         // ROI Inputs
+    //             savingsAssumption1: this.refs.savingsAssumption1.value,
+    //             savingsAssumption2: this.refs.savingsAssumption2.value,
+    //     })
+    //     .then(function(response) {
+    //         console.log(response);
+    //     })
+    //     .catch(function(error) {
+    //         console.log(error);
+    //     });
+    // }
 
     reset = (event) => {
         console.log("We are resetting our state");
     }
-    componentDidMount() {
-        console.log("we are mounted and ready to display record number: ", this.props.id);
+    
+    componentWillMount() {
+        console.log("we are mounted and ready to axios call the db for record number: ", this.props.id);
         axios.get("/api/view" + this.props.id)
         .then(res => {
             let selected = res.data[0]
             console.log(selected);
-            }, (selected) => {
             this.setState({ 
-                    id: selected.id,
-                    companyName: selected.companyName.value,
-                // Turnover and Recruitment Savings
-                    // Employee Turnover Cost Savings Inputs
-                    lastFiscalYearEnd: selected.lastFiscalYearEnd.value,
-                    totEBOY: this.selected.totEBOY.value,
-                    totEEOY: this.selected.totEEOY.value,
-                    totEEOY1: this.selected.totEEOY1.value,
-                    totEwVoluntaryExit: this.selected.totEwVoluntaryExit.value,
-                    avgTurnoverCostVoluntaryExit: this.selected.avgTurnoverCostVoluntaryExit.value,
-                    productTurnoverSavings: this.selected.productTurnoverSavings.value,
-                    // Recruiting Cost Inputs
-                    avgDaysPostingToAccept: this.selected.avgDaysPostingToAccept.value,
-                    totRecruitingExpenses: this.selected.totRecruitingExpenses.value,
-                    productRecruitingSavings: this.selected.productRecruitingSavings.value,
-                // Personnel Efficiencies
-                    // HR Admin Time Savings
-                    totHREmployeesAdminEmployeePrograms: this.selected.totHREmployeesAdminEmployeePrograms.value,
-                    totHREmployeesAdminEmployeePrograms1: this.selected.totHREmployeesAdminEmployeePrograms1.value,
-                    percentageShareOfHREmployeesTimeAdminEmployeePrograms: this.selected.percentageShareOfHREmployeesTimeAdminEmployeePrograms.value,
-                    avgSalaryHREmployee: this.selected.avgSalaryHREmployee.value,
-                    reductionManagingProgramsHREmployee: this.selected.reductionManagingProgramsHREmployee.value,
-                    // Employee Productiving Savings
-                    avgAnnualSalaryGeneralEmployee: this.selected.avgAnnualSalaryGeneralEmployee.value,
-                    increaseGeneralEmployeeProductivity: this.selected.increaseGeneralEmployeeProductivity.value,
-                // Investment Inputs
-                    suggestedUserMax: this.selected.suggestedUserMax.value,
-                    annualSoftwareFees: this.selected.annualSoftwareFees.value,
-                    oneTimeImplimentationFee: this.selected.oneTimeImplimentationFee.value,
-                // Program and Tool Enrichment Inputs
-                    existingProvidersCost: this.selected.existingProvidersCost.value,
-                    rewardsProgramOtherCompany: this.selected.rewardsProgramOtherCompany.value,
-                // ROI Inputs
-                    savingsAssumption1: this.selected.savingsAssumption1.value,
-                    savingsAssumption2: this.selected.savingsAssumption2.value,
+                inputs: selected
             });
-            console.log(this.state);
-        })
+            }, (selected) => {
+       })
     };
+
+
     render() {
-        console.log(this.state);
+        const style = {
+            container: {
+                paddingTop: '80px'
+            }
+        }
         return (
-            <div className="container">
+            <div style={style.container} className="container">
                 <div className="row" id="header">
                     <div className="col-md-12">
                         <h4>The Employee Experience ROI Calculator</h4>
                         <br />
-                        <h6>Company Name: {this.state.companyName}</h6>
+                        <h6>{this.state.inputs.companyName}</h6>
                         {/* <input ref="companyName" placeholder="Company Name"></input> */}
                         <br />
-                        <h6>Client Name:</h6>
-                        <h6>Client Email:</h6>
-                        <h6>When did your last fiscal period end?</h6>
+                        <h6>Client Name: {this.state.inputs.clientName}</h6>
+                        <h6>Client Email: {this.state.inputs.clientEmail}</h6>
+                        <h6>When did your last fiscal period end?: {this.state.inputs.lastFiscalYearEnd}</h6>
                         {/* <input ref="lastFiscalYearEnd" type="date" placeholder="Enter Date"></input> */}
                         <br />
                         {/* <button onClick={this.companyYear.bind(this)}>Confirm</button> */}
@@ -410,7 +344,9 @@ class UserView extends Component {
                     </div>
                     <div className="row">
                         <div className="col-md-12">
-                        <button onClick={this.turnoverRecruitmentSavings.bind(this)}>Turnover and Recruitment Calculation</button>
+                        <button 
+                        // onClick={this.turnoverRecruitmentSavings.bind(this)}
+                        >Turnover and Recruitment Calculation</button>
                         </div>
                     </div>
                 </div>
@@ -852,7 +788,9 @@ class UserView extends Component {
                     <div className="col-md-4">
                     </div>
                     <div className="col-md-4">
-                        <button type="button" className="btn btn-outline-success" onClick={ this.calculate.bind(this) }>Calculate</button>
+                        <button type="button" className="btn btn-outline-success" 
+                        // onClick={ this.calculate.bind(this) }
+                        >Calculate</button>
                         <button type="button" className="btn btn-outline-secondary" onClick={ this.reset.bind(this) }>Reset</button>
                     </div>
                     <div className="col-md-4">

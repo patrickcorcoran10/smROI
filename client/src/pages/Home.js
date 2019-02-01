@@ -21,53 +21,55 @@ class Home extends Component {
         this.searchDB = this.searchDB.bind(this);
         this.onDelete = this.onDelete.bind(this);
         this.onUpdate = this.onUpdate.bind(this);
-        this.onModal = this.openModal.bind(this);
-        this.afterOpenModal = this.afterOpenModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
+        // this.onModal = this.openModal.bind(this);
+        // this.afterOpenModal = this.afterOpenModal.bind(this);
+        // this.closeModal = this.closeModal.bind(this);
         this.state = {
-            // YearQ Inputs
-                modalIsOpen: false,
-                id: [],
-                companyName: "",
-                clientName: '',
-                clientEmail: '',
-                tableYear: "",
-                tableYearPlusOne: "",
-                tableYearPlusTwo: "",
-                tableYearPlusThree: "",
-                lastFiscalYearEnd: "",
-            // Turnover and Recruitment Savings
-                // Employee Turnover Cost Savings Inputs
-                totEBOY: "",
-                totEEOY: "",
-                totEEOY1: "",
-                totEwVoluntaryExit: "",
-                avgTurnoverCostVoluntaryExit: "",
-                productTurnoverSavings: "",
-                // Recruiting Cost Inputs
-                avgDaysPostingToAccept: "",
-                totRecruitingExpenses: "",
-                productRecruitingSavings: "",
-            // Personnel Efficiencies
-                // HR Admin Time Savings
-                totHREmployeesAdminEmployeePrograms: "",
-                totHREmployeesAdminEmployeePrograms1: "",
-                percentageShareOfHREmployeesTimeAdminEmployeePrograms: "",
-                avgSalaryHREmployee: "",
-                reductionManagingProgramsHREmployee: "",
-                // Employee Productiving Savings
-                avgAnnualSalaryGeneralEmployee: "",
-                increaseGeneralEmployeeProductivity: "",
-            // Investment Inputs
-                suggestedUserMax: "",
-                annualSoftwareFees: "",
-                oneTimeImplimentationFee: "",
-            // Program and Tool Enrichment Inputs
-                existingProvidersCost: "",
-                rewardsProgramOtherCompany: "",
-            // ROI Inputs
-                savingsAssumption1: "",
-                savingsAssumption2: "",
+            inputs: [
+            // // YearQ Inputs
+            //     modalIsOpen: false,
+            //     id: [],
+            //     companyName: "",
+            //     clientName: '',
+            //     clientEmail: '',
+            //     tableYear: "",
+            //     tableYearPlusOne: "",
+            //     tableYearPlusTwo: "",
+            //     tableYearPlusThree: "",
+            //     lastFiscalYearEnd: "",
+            // // Turnover and Recruitment Savings
+            //     // Employee Turnover Cost Savings Inputs
+            //     totEBOY: "",
+            //     totEEOY: "",
+            //     totEEOY1: "",
+            //     totEwVoluntaryExit: "",
+            //     avgTurnoverCostVoluntaryExit: "",
+            //     productTurnoverSavings: "",
+            //     // Recruiting Cost Inputs
+            //     avgDaysPostingToAccept: "",
+            //     totRecruitingExpenses: "",
+            //     productRecruitingSavings: "",
+            // // Personnel Efficiencies
+            //     // HR Admin Time Savings
+            //     totHREmployeesAdminEmployeePrograms: "",
+            //     totHREmployeesAdminEmployeePrograms1: "",
+            //     percentageShareOfHREmployeesTimeAdminEmployeePrograms: "",
+            //     avgSalaryHREmployee: "",
+            //     reductionManagingProgramsHREmployee: "",
+            //     // Employee Productiving Savings
+            //     avgAnnualSalaryGeneralEmployee: "",
+            //     increaseGeneralEmployeeProductivity: "",
+            // // Investment Inputs
+            //     suggestedUserMax: "",
+            //     annualSoftwareFees: "",
+            //     oneTimeImplimentationFee: "",
+            // // Program and Tool Enrichment Inputs
+            //     existingProvidersCost: "",
+            //     rewardsProgramOtherCompany: "",
+            // // ROI Inputs
+            //     savingsAssumption1: "",
+            //     savingsAssumption2: "",
+            ]
             };
     
     };
@@ -76,29 +78,29 @@ class Home extends Component {
         axios.get("/api/home")
         .then(res => {
             console.log(res);
-            this.setState({ id: res.data })
+            this.setState({ inputs: res.data })
         })
     };
     searchDB(event) {
         console.log(this.refs.searchTerm.value)
     };
-    openModal(event) {
-        event.preventDefault();
-        this.setState({
-            modalIsOpen: true,
-        }, () => {
-            console.log("modal time")
-        })
-    };
-    afterOpenModal() {
-        this.subtite.style.color = 'black';
-    };
-    closeModal() {
-        this.setState({
-            modalIsOpen: false
-        });
-        this.props.history.push('/');
-    };
+    // openModal(event) {
+    //     event.preventDefault();
+    //     this.setState({
+    //         modalIsOpen: true,
+    //     }, () => {
+    //         console.log("modal time")
+    //     })
+    // };
+    // afterOpenModal() {
+    //     this.subtite.style.color = 'black';
+    // };
+    // closeModal() {
+    //     this.setState({
+    //         modalIsOpen: false
+    //     });
+    //     this.props.history.push('/');
+    // };
     search(event) {
         event.preventDefault();
         let searchTerm = this.refs.searchTerm.value;
@@ -150,8 +152,9 @@ class Home extends Component {
                 height: '650px',
                 color: 'orange',
                 width: '950px',
-                // paddingLeft: '40px',
-                align: 'center'
+                paddingLeft: '40px',
+                align: 'center',
+                paddingTop: '80px'
             }
         }
         return(
@@ -182,13 +185,13 @@ class Home extends Component {
                                     <th>Update</th>
                                     <th>Delete</th>
                                 </tr>
-                                {this.state.id.map((data, index) => (
-                                <tr>
-                                    <td key={data.companyName}>{data.companyName}</td>
-                                    <td key={data.clientName}>{data.clientName}</td>
-                                    <td key={data.clientEmail}>{data.clientEmail}</td>
-                                    <td key={data.updatedAt}>{data.updatedAt}</td>
-                                    <td><button value={data.id} onClick={this.onUpdate}>Update</button></td>
+                                {this.state.inputs.map((data, index) => (
+                                <tr key={data.id}>
+                                    <td>{data.companyName}</td>
+                                    <td>{data.clientName}</td>
+                                    <td>{data.clientEmail}</td>
+                                    <td>{data.updatedAt}</td>
+                                    <td><button value={data.id} onClick={this.onUpdate}>Company View</button></td>
                                     <td><button value={data.id} onClick={this.openModal}>Delete</button></td>
                                 </tr>
                                 ))}

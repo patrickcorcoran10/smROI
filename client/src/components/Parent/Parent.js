@@ -4,7 +4,7 @@ import Home from "../../pages/Home.js";
 import UserView from "../../pages/UserView";
 import Form from "../../pages/Form";
 import Visuals from "../../pages/Visuals";
-import Signin from "../../pages/Signin";
+// import Signin from "../../pages/Signin";
 
 
 class Parent extends Component {
@@ -12,6 +12,8 @@ class Parent extends Component {
         super(props);
 
     this.state = {
+        inputs: {
+            id: '',
             companyName: "",
             clientName: "",
             clientEmail: "",
@@ -48,10 +50,12 @@ class Parent extends Component {
         // ROI Inputs
             savingsAssumption1: "",
             savingsAssumption2: "",
-        };
+        }
+    };
     };
     onUpdate(idChosen) {
         this.setState({
+            inputs: {
             id: idChosen,
             companyName: "",
             clientName: "",
@@ -89,6 +93,7 @@ class Parent extends Component {
         // ROI Inputs
             savingsAssumption1: "",
             savingsAssumption2: "",
+            }
         })
     };
     render() {
@@ -96,9 +101,9 @@ class Parent extends Component {
             <div className="parent">
                 <Route exact path="/" render={(props) => <Home {...props} click={this.onUpdate.bind(this)} />} />
                 <Route exact path="/form" component={Form} />
-                <Route exact path="/view" render={(props) => <UserView {...props} id={this.state.id} />} />
+                <Route exact path="/view" render={(props) => <UserView {...props} id={this.state.inputs.id} />} />
                 <Route exact path="/visuals" component={Visuals} />
-                <Route exact path="/signin" component={Signin} />
+                {/* <Route exact path="/signin" component={Signin} /> */}
             </div>
         )
     }

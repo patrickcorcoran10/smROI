@@ -305,7 +305,8 @@ class Form extends Component {
                 height: '650px',
                 color: 'orange',
                 width: '950px',
-                paddingLeft: '40px'
+                paddingLeft: '40px',
+                paddingTop: '80px'
             }
         }
         return (
