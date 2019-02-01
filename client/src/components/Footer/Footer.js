@@ -11,7 +11,7 @@ class Footer extends Component {
                 position: "fixed",
                 left: "0",
                 bottom: "0",
-                height: "60px",
+                height: "30px",
                 width: "100%",
             }
         }

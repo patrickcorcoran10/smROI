@@ -17,7 +17,7 @@ class Navbar extends Component {
       <div id="nb" className="navbar">
           <Link to="/" className="navbar-brand">Dashboard</Link>
           <Link to="/form" className="nav-link">Form</Link>
-          <Link to="/view" className="nav-link">User View</Link>
+          <Link to="/view" className="nav-link">Company View</Link>
           <Link to="/visuals" className="nav-link">Visuals</Link>
           <Link to="/signin" className="nav-link">Log-Out</Link>
         </div>

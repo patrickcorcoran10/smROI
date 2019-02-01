@@ -1,6 +1,6 @@
 // Dependencies
 import React, { Component } from "react";
-import "../components/MultiyearROI/MultiyearROI.css";
+import "../components/MultiyearROI/MultiyearROI";
 import axios from "axios";
 
 class UserView extends Component {
@@ -12,138 +12,9 @@ class UserView extends Component {
         };
     };
 
-    // companyYear = (event) => {
-    //     event.preventDefault(); 
-    //     let year = parseInt(this.refs.lastFiscalYearEnd.value.slice(0,4));
-    //     let yearPlusOne = year + 1;
-    //     let yearPlusTwo = year +2;
-    //     let yearPlusThree = year + 3;
-    //     this.setState({
-    //         companyName: this.refs.companyName.value,
-    //         lastFiscalYearEnd: this.refs.lastFiscalYearEnd.value,
-    //         tableYear: "FY-"+year,
-    //         tableYearPlusOne: "FY-"+yearPlusOne,
-    //         tableYearPlusTwo: "FY-"+yearPlusTwo,
-    //         tableYearPlusThree: "FY-"+yearPlusThree,
-    //     }, () => {
-    //     console.log(this.state);    
-    //     });
-    // }
-    // turnoverRecruitmentSavings = (event) => {
-    //     event.preventDefault();
-    //     let totEBOYwithoutCoYearPlusOne = this.refs.totEEOY.value;
-    //     let totEBOYwithCoYearPlusOne = totEBOYwithoutCoYearPlusOne;
-    //     let overallEmployeeTurnoverPlusOne = (.126 * (1 - (parseInt(this.refs.productTurnoverSavings.value))));
-    //     let impactOverallEmployeeTurnoverPlusOne = overallEmployeeTurnoverPlusOne - 12.6;
-    //     let totEmployeesWithVoluntaryExitPlusOnewithoutCompany = .126 * ((totEBOYwithoutCoYearPlusOne + totEBOYwithoutCoYearPlusOne)/2);
-    //     // let totEmployeesWithVoluntaryExitPlusOnewithCompany = .114 * ((totEBOYwithoutCoYearPlusOne + this.state.totEEOY1.value)/2);
-    //     this.setState({
-    //         totEBOY: this.refs.totEBOY.value,
-    //         totEBOYwoCoYearPlusOne: totEBOYwithoutCoYearPlusOne,
-    //         totEBOYwithCoYearPlusOne: totEBOYwithCoYearPlusOne,
-    //         totEEOY: this.refs.totEEOY.value,
-    //         totEEOY1: this.refs.totEEOY1.value,
-    //         totEmployeesWithVoluntaryExitPlusOnewithoutCompany: totEmployeesWithVoluntaryExitPlusOnewithoutCompany,
-    //         totEwVoluntaryExit: this.refs.totEwVoluntaryExit.value,
-    //         avgTurnoverCostVoluntaryExit: this.refs.avgTurnoverCostVoluntaryExit.value,
-    //         productTurnoverSavings: this.refs.productTurnoverSavings.value,
-    //         overallEmployeeTurnoverPlusOne: overallEmployeeTurnoverPlusOne,
-    //         impactOverallEmployeeTurnoverPlusOne: impactOverallEmployeeTurnoverPlusOne,
-    //     }, () => {
-    //         console.log(this.state);
-
-    //     })
-    // }
-
-    // calculate = (event) => {
-    //     console.log("Now we're clicking");
-    //     event.preventDefault();
-    //     this.setState({
-    //             companyName: this.refs.companyName.value,
-    //         // Turnover and Recruitment Savings
-    //             // Employee Turnover Cost Savings Inputs
-    //             lastFiscalYearEnd: this.refs.lastFiscalYearEnd.value,
-    //             totEBOY: this.refs.totEBOY.value,
-    //             totEEOY: this.refs.totEEOY.value,
-    //             totEEOY1: this.refs.totEEOY1.value,
-    //             totEwVoluntaryExit: this.refs.totEwVoluntaryExit.value,
-    //             avgTurnoverCostVoluntaryExit: this.refs.avgTurnoverCostVoluntaryExit.value,
-    //             productTurnoverSavings: this.refs.productTurnoverSavings.value,
-    //             // Recruiting Cost Inputs
-    //             avgDaysPostingToAccept: this.refs.avgDaysPostingToAccept.value,
-    //             totRecruitingExpenses: this.refs.totRecruitingExpenses.value,
-    //             productRecruitingSavings: this.refs.productRecruitingSavings.value,
-    //         // Personnel Efficiencies
-    //             // HR Admin Time Savings
-    //             totHREmployeesAdminEmployeePrograms: this.refs.totHREmployeesAdminEmployeePrograms.value,
-    //             totHREmployeesAdminEmployeePrograms1: this.refs.totHREmployeesAdminEmployeePrograms1.value,
-    //             percentageShareOfHREmployeesTimeAdminEmployeePrograms: this.refs.percentageShareOfHREmployeesTimeAdminEmployeePrograms.value,
-    //             avgSalaryHREmployee: this.refs.avgSalaryHREmployee.value,
-    //             reductionManagingProgramsHREmployee: this.refs.reductionManagingProgramsHREmployee.value,
-    //             // Employee Productiving Savings
-    //             avgAnnualSalaryGeneralEmployee: this.refs.avgAnnualSalaryGeneralEmployee.value,
-    //             increaseGeneralEmployeeProductivity: this.refs.increaseGeneralEmployeeProductivity.value,
-    //         // Investment Inputs
-    //             suggestedUserMax: this.refs.suggestedUserMax.value,
-    //             annualSoftwareFees: this.refs.annualSoftwareFees.value,
-    //             oneTimeImplimentationFee: this.refs.oneTimeImplimentationFee.value,
-    //         // Program and Tool Enrichment Inputs
-    //             existingProvidersCost: this.refs.existingProvidersCost.value,
-    //             rewardsProgramOtherCompany: this.refs.rewardsProgramOtherCompany.value,
-    //         // ROI Inputs
-    //             savingsAssumption1: this.refs.savingsAssumption1.value,
-    //             savingsAssumption2: this.refs.savingsAssumption2.value,
-    //     }, () => {
-    //         console.log(this.state);
-
-    //     })
-    //     axios.post("/api/multiyearROI", {
-    //             companyName: this.refs.companyName.value,
-    //         // Turnover and Recruitment Savings
-    //             // Employee Turnover Cost Savings Inputs
-    //             lastFiscalYearEnd: this.refs.lastFiscalYearEnd.value,
-    //             totEBOY: this.refs.totEBOY.value,
-    //             totEEOY: this.refs.totEEOY.value,
-    //             totEEOY1: this.refs.totEEOY1.value,
-    //             totEwVoluntaryExit: this.refs.totEwVoluntaryExit.value,
-    //             avgTurnoverCostVoluntaryExit: this.refs.avgTurnoverCostVoluntaryExit.value,
-    //             productTurnoverSavings: this.refs.productTurnoverSavings.value,
-    //             // Recruiting Cost Inputs
-    //             avgDaysPostingToAccept: this.refs.avgDaysPostingToAccept.value,
-    //             totRecruitingExpenses: this.refs.totRecruitingExpenses.value,
-    //             productRecruitingSavings: this.refs.productRecruitingSavings.value,
-    //         // Personnel Efficiencies
-    //             // HR Admin Time Savings
-    //             totHREmployeesAdminEmployeePrograms: this.refs.totHREmployeesAdminEmployeePrograms.value,
-    //             totHREmployeesAdminEmployeePrograms1: this.refs.totHREmployeesAdminEmployeePrograms1.value,
-    //             percentageShareOfHREmployeesTimeAdminEmployeePrograms: this.refs.percentageShareOfHREmployeesTimeAdminEmployeePrograms.value,
-    //             avgSalaryHREmployee: this.refs.avgSalaryHREmployee.value,
-    //             reductionManagingProgramsHREmployee: this.refs.reductionManagingProgramsHREmployee.value,
-    //             // Employee Productiving Savings
-    //             avgAnnualSalaryGeneralEmployee: this.refs.avgAnnualSalaryGeneralEmployee.value,
-    //             increaseGeneralEmployeeProductivity: this.refs.increaseGeneralEmployeeProductivity.value,
-    //         // Investment Inputs
-    //             suggestedUserMax: this.refs.suggestedUserMax.value,
-    //             annualSoftwareFees: this.refs.annualSoftwareFees.value,
-    //             oneTimeImplimentationFee: this.refs.oneTimeImplimentationFee.value,
-    //         // Program and Tool Enrichment Inputs
-    //             existingProvidersCost: this.refs.existingProvidersCost.value,
-    //             rewardsProgramOtherCompany: this.refs.rewardsProgramOtherCompany.value,
-    //         // ROI Inputs
-    //             savingsAssumption1: this.refs.savingsAssumption1.value,
-    //             savingsAssumption2: this.refs.savingsAssumption2.value,
-    //     })
-    //     .then(function(response) {
-    //         console.log(response);
-    //     })
-    //     .catch(function(error) {
-    //         console.log(error);
-    //     });
-    // }
-
     reset = (event) => {
         console.log("We are resetting our state");
-    }
+    };
     
     componentWillMount() {
         console.log("we are mounted and ready to axios call the db for record number: ", this.props.id);
@@ -154,17 +25,15 @@ class UserView extends Component {
             this.setState({ 
                 inputs: selected
             });
-            }, (selected) => {
-       })
+        })
     };
-
 
     render() {
         const style = {
             container: {
                 paddingTop: '80px'
             }
-        }
+        };
         return (
             <div style={style.container} className="container">
                 <div className="row" id="header">
@@ -196,8 +65,8 @@ class UserView extends Component {
                                 <tbody>
                                     <tr>
                                         <th className="leftTH">Employee Turnover Costs</th>
-                                        <th>{this.state.tableYear}</th>
-                                        <th>{this.state.tableYearPlusOne}</th>
+                                        <th>{this.state.inputs.tableYear}</th>
+                                        <th>{this.state.inputs.tableYearPlusOne}</th>
                                         <th>{this.state.tableYearPlusOne}</th>
                                         <th className="impactTH">IMPACT</th>
                                     </tr>
@@ -210,31 +79,41 @@ class UserView extends Component {
                                     </tr>
                                     <tr>
                                         <td className="leftTH">Total Employees at Beginning of Year</td>
-                                        <td><input className="tableInput" ref="totEBOY" placeholder="0"></input></td>
-                                        <td>{this.state.totEBOYwithCoYearPlusOne}</td>
-                                        <td>{this.state.totEBOYwithCoYearPlusOne}</td>
+                                        <td>{this.state.inputs.totEBOY}
+                                        {/* <input className="tableInput" ref="totEBOY" placeholder="0"></input> */}
+                                        </td>
+                                        <td>{this.state.inputs.totEEOY}</td>
+                                        <td>{this.state.inputs.totEEOY}</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td className="leftTH">Total Employees at End of Year</td>
-                                        <td><input className="tableInput" ref="totEEOY" placeholder="0"></input></td>
-                                        <td><input className="tableInput" ref="totEEOY1" placeholder="0"></input></td>
-                                        <td>{this.state.totEEOY1}</td>
+                                        <td>{this.state.inputs.totEEOY}
+                                        {/* <input className="tableInput" ref="totEEOY" placeholder="0"></input> */}
+                                        </td>
+                                        <td>{this.state.inputs.totEEOY1}
+                                        {/* <input className="tableInput" ref="totEEOY1" placeholder="0"></input> */}
+                                        </td>
+                                        <td>{this.state.inputs.totEEOY1}</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td className="leftTH">Total Employees with Voluntary Exit</td>
-                                        <td><input className="tableInput" ref="totEwVoluntaryExit" placeholder="0"></input></td>
+                                        <td>{this.state.inputs.totEwVoluntaryExit}
+                                        {/* <input className="tableInput" ref="totEwVoluntaryExit" placeholder="0"></input> */}
+                                        </td>
                                         <td>{this.state.totEmployeesWithVoluntaryExitPlusOnewithoutCompany}</td>
                                         <td>{this.state.totEmployeesWithVoluntaryExitPlusOnewithoutCompany}</td>
                                         <td>x</td>
                                     </tr>
                                     <tr>
                                         <td className="leftTH">Average Turnover Cost per Voluntary Exit</td>
-                                        <td><input className="tableInput" ref="avgTurnoverCostVoluntaryExit" placeholder="$0.00" type="currency"></input></td>
-                                        <td>x</td>
-                                        <td>x</td>
-                                        <td>x</td>
+                                        <td>{this.state.inputs.avgTurnoverCostVoluntaryExit}
+                                        {/* <input className="tableInput" ref="avgTurnoverCostVoluntaryExit" placeholder="$0.00" type="currency"></input> */}
+                                        </td>
+                                        <td>{this.state.inputs.avgTurnoverCostVoluntaryExit}</td>
+                                        <td>{this.state.inputs.avgTurnoverCostVoluntaryExit}</td>
+                                        <td></td>
                                     </tr>
                                     <tr>
                                         <td className="leftTH" id="footnote">*If you don't know your average turnover cost, you can use the average annual salary of employees</td>
@@ -300,14 +179,18 @@ class UserView extends Component {
                                     </tr>
                                     <tr>
                                         <td className="leftTH">Average Days from Job Posting to Offer Acceptance</td>
-                                        <td><input className="tableInput" ref="avgDaysPostingToAccept" placeholder="0"></input></td>
-                                        <td>x</td>
+                                        <td>{this.state.inputs.avgDaysPostingToAccept}
+                                        {/* <input className="tableInput" ref="avgDaysPostingToAccept" placeholder="0"></input> */}
+                                        </td>
+                                        <td>{this.state.inputs.avgDaysPostingToAccept}</td>
                                         <td>x</td>
                                         <td>x</td>
                                     </tr>
                                     <tr>
                                         <td className="leftTH">Total Recruiting Expenses</td>
-                                        <td><input type="currancy" className="tableInput" ref="totRecruitingExpenses" placeholder="$0.00"></input></td>
+                                        <td>{this.state.inputs.totRecruitingExpenses}
+                                        {/* <input type="currancy" className="tableInput" ref="totRecruitingExpenses" placeholder="$0.00"></input> */}
+                                        </td>
                                         <td>x</td>
                                         <td>x</td>
                                         <td>x</td>
@@ -342,13 +225,13 @@ class UserView extends Component {
                             </table>
                         </div>
                     </div>
-                    <div className="row">
+                    {/* <div className="row">
                         <div className="col-md-12">
                         <button 
                         // onClick={this.turnoverRecruitmentSavings.bind(this)}
                         >Turnover and Recruitment Calculation</button>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="personnelEfficiencies">
                 <div className="row" id="personnelEfficiencies">
@@ -378,23 +261,31 @@ class UserView extends Component {
                                         </tr>
                                         <tr>
                                             <td className="leftTH">Total Human Resources Employees Administering Employee Programs</td>
-                                            <td><input className="tableInput" ref="totHREmployeesAdminEmployeePrograms" placeholder="0"></input></td>
-                                            <td><input className="tableInput" ref="totHREmployeesAdminEmployeePrograms1" placeholder="0"></input></td>
-                                            <td>x</td>
+                                            <td>{this.state.inputs.totHREmployeesAdminEmployeePrograms}
+                                            {/* <input className="tableInput" ref="totHREmployeesAdminEmployeePrograms" placeholder="0"></input> */}
+                                            </td>
+                                            <td>{this.state.inputs.totHREmployeesAdminEmployeePrograms1}
+                                            {/* <input className="tableInput" ref="totHREmployeesAdminEmployeePrograms1" placeholder="0"></input> */}
+                                            </td>
+                                            <td>{this.state.inputs.totHREmployeesAdminEmployeePrograms1}</td>
                                             <td>x</td>
                                         </tr>
                                         <tr>
                                             <td className="leftTH">% Share of HR Employees' Time Spent Managing Company Employee Programs</td>
-                                            <td><input className="tableInput" ref="percentageShareOfHREmployeesTimeAdminEmployeePrograms" placeholder="0"></input></td>
-                                            <td>x</td>
+                                            <td>{this.state.inputs.percentageShareOfHREmployeesTimeAdminEmployeePrograms}
+                                            {/* <input className="tableInput" ref="percentageShareOfHREmployeesTimeAdminEmployeePrograms" placeholder="0"></input> */}
+                                            </td>
+                                            <td>{this.state.inputs.percentageShareOfHREmployeesTimeAdminEmployeePrograms}</td>
                                             <td>x</td>
                                             <td>x</td>
                                         </tr>
                                         <tr>
                                             <td className="leftTH">Average Annual Salary & Benefits of Human Resource Employee</td>
-                                            <td><input className="tableInput" ref="avgSalaryHREmployee" type="currency" placeholder="$0.00"></input></td>
-                                            <td>x</td>
-                                            <td>x</td>
+                                            <td>{this.state.inputs.avgSalaryHREmployee}
+                                            {/* <input className="tableInput" ref="avgSalaryHREmployee" type="currency" placeholder="$0.00"></input> */}
+                                            </td>
+                                            <td>{this.state.inputs.avgSalaryHREmployee}</td>
+                                            <td>{this.state.inputs.avgSalaryHREmployee}</td>
                                             <td>x</td>
                                         </tr>
                                     </tbody>
@@ -447,9 +338,11 @@ class UserView extends Component {
                                         </tr>
                                         <tr>
                                             <td className="leftTH">Average Annual Salary & Benefits of General Employee</td>
-                                            <td><input className="tableInput" ref="avgAnnualSalaryGeneralEmployee" placeholder="0"></input></td>
-                                            <td>x</td>
-                                            <td>x</td>
+                                            <td>{this.state.inputs.avgAnnualSalaryGeneralEmployee}
+                                            {/* <input className="tableInput" ref="avgAnnualSalaryGeneralEmployee" placeholder="0"></input> */}
+                                            </td>
+                                            <td>{this.state.inputs.avgAnnualSalaryGeneralEmployee}</td>
+                                            <td>{this.state.inputs.avgAnnualSalaryGeneralEmployee}</td>
                                             <td>x</td>
                                         </tr>
                                         <tr>
@@ -520,11 +413,15 @@ class UserView extends Component {
                                     </tr>
                                     <tr>
                                         <td>Suggested User Max</td>
-                                        <td><input className="tableInput" ref="suggestedUserMax" placeholder="0"></input></td>
+                                        <td>{this.state.inputs.suggestedUserMax}
+                                        {/* <input className="tableInput" ref="suggestedUserMax" placeholder="0"></input> */}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Annual Software Fees</td>
-                                        <td><input className="tableInput" ref="annualSoftwareFees" type="currency" placeholder="$0.00"></input></td>
+                                        <td>{this.state.inputs.annualSoftwareFees}
+                                        {/* <input className="tableInput" ref="annualSoftwareFees" type="currency" placeholder="$0.00"></input> */}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Cost per User per Month</td>
@@ -548,7 +445,9 @@ class UserView extends Component {
                                     </tr>
                                     <tr>
                                         <td>One-Time Implementation Service Fee</td>
-                                        <td><input className="tableInput" ref="oneTimeImplimentationFee" placeholder="$0.00" type="currency"></input></td>
+                                        <td>{this.state.inputs.oneTimeImplimentationFee}
+                                        {/* <input className="tableInput" ref="oneTimeImplimentationFee" placeholder="$0.00" type="currency"></input> */}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td><strong>Total Fees and Employee Rewards Spend</strong></td>
@@ -587,13 +486,17 @@ class UserView extends Component {
                                     </tr>
                                     <tr>
                                         <td className="leftTH">Existing technology providers to be enriched or replaced by Ex. Co.</td>
-                                        <td><input className="tableInput" ref="existingProvidersCost" placeholder="$0.00" type="currency"></input></td>
+                                        <td>{this.state.inputs.existingProvidersCost}
+                                        {/* <input className="tableInput" ref="existingProvidersCost" placeholder="$0.00" type="currency"></input> */}
+                                        </td>
                                         <td>$</td>
                                         <td>$</td>
                                     </tr>
                                     <tr>
                                         <td className="leftTH">Non-Ex. Co. rewards programs (gift cards, anniversaries, giveaways, contests, etc. now managed out of Ex. Co. Rewards Budget above)</td>
-                                        <td><input className="tableInput" ref="rewardsProgramOtherCompany" placeholder="$0.00" type="currency"></input></td>
+                                        <td>{this.state.inputs.rewardsProgramOtherCompany}
+                                        {/* <input className="tableInput" ref="rewardsProgramOtherCompany" placeholder="$0.00" type="currency"></input> */}
+                                        </td>
                                         <td>$</td>
                                         <td>$</td>
                                     </tr>
