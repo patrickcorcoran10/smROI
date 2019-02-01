@@ -8,7 +8,8 @@ class Navbar extends Component {
       navbar: {
         backgroundColor: 'darkgrey',
         width: "100%",
-        color: 'white'
+        color: 'white',
+        position: "fixed"
       }
     }
     return (
