@@ -154,7 +154,8 @@ class Home extends Component {
                 width: '950px',
                 paddingLeft: '40px',
                 align: 'center',
-                paddingTop: '80px'
+                paddingTop: '80px',
+                paddingBottom: '180px'
             }
         }
         return(
