@@ -34,6 +34,23 @@ class UserView extends Component {
                 paddingTop: '80px'
             }
         };
+        // let startingYear = (this.state.inputs.lastFiscalYearEnd);
+        // console.log(startingYear);
+        const totEwVoluntaryExit1 = Math.round((((parseInt(this.state.inputs.totEEOY1)) + (parseInt(this.state.inputs.totEEOY)))/2) * .126).toFixed(0);
+        const overallEmployeeTurnover2 = (.126 * (1 - .1)).toFixed(2);
+        const overallEmployeeTurnoverImpact = (overallEmployeeTurnover2 - .126).toFixed(2);
+        const totEwVoluntaryExit2 = ((parseInt(this.state.inputs.totEEOY) + parseInt(this.state.inputs.totEEOY1)/2) * overallEmployeeTurnover2).toFixed(0);
+        const totEwVoluntaryExitImpact = totEwVoluntaryExit2 - totEwVoluntaryExit1;
+        const totEmployeeTurnoverCost = this.state.inputs.avgTurnoverCostVoluntaryExit * this.state.inputs.totEwVoluntaryExit;
+        const totEmployeeTurnoverCost1 = totEwVoluntaryExit1 * this.state.inputs.avgTurnoverCostVoluntaryExit;
+        const totEmployeeTurnoverCost2 = this.state.inputs.avgTurnoverCostVoluntaryExit * totEwVoluntaryExit2;
+        const totEmployeeTurnoverCostImpact = totEmployeeTurnoverCost2 - totEmployeeTurnoverCost1;
+        const newHires = parseInt(this.state.inputs.totEEOY) - parseInt(this.state.inputs.totEBOY) + parseInt(this.state.inputs.totEwVoluntaryExit);
+        const newHires1 = parseInt(this.state.inputs.totEEOY1) - parseInt(this.state.inputs.totEEOY) + parseInt(totEwVoluntaryExit1);
+        const avgDaysPostingToAccept2 = (parseInt(this.state.inputs.avgDaysPostingToAccept) * (1 - .1)).toFixed(0);
+        const avgDaysPostingToAcceptImpact = Math.round(avgDaysPostingToAccept2 - parseInt(this.state.inputs.avgDaysPostingToAccept)).toFixed(0);
+        const recruitingCostPerHire = parseInt(this.state.inputs.totRecruitingExpenses) / parseInt(newHires);
+        const totRecruitingExpenses1 = recruitingCostPerHire * newHires1;
         return (
             <div style={style.container} className="container">
                 <div className="row" id="header">
@@ -65,14 +82,14 @@ class UserView extends Component {
                                 <tbody>
                                     <tr>
                                         <th className="leftTH">Employee Turnover Costs</th>
-                                        <th>{this.state.inputs.tableYear}</th>
-                                        <th>{this.state.inputs.tableYearPlusOne}</th>
-                                        <th>{this.state.tableYearPlusOne}</th>
+                                        <th>{}FY - 2018</th>
+                                        <th>{}FY - 2019</th>
+                                        <th>{}FY - 2019</th>
                                         <th className="impactTH">IMPACT</th>
                                     </tr>
                                     <tr className="smallTR">
                                         <td></td>
-                                        <td></td>
+                                        <td>Client As Is</td>
                                         <td>Without Ex. Company</td>
                                         <td>With Ex. Company</td>
                                         <td>Due to Ex. Company</td>
@@ -102,17 +119,17 @@ class UserView extends Component {
                                         <td>{this.state.inputs.totEwVoluntaryExit}
                                         {/* <input className="tableInput" ref="totEwVoluntaryExit" placeholder="0"></input> */}
                                         </td>
-                                        <td>{this.state.totEmployeesWithVoluntaryExitPlusOnewithoutCompany}</td>
-                                        <td>{this.state.totEmployeesWithVoluntaryExitPlusOnewithoutCompany}</td>
-                                        <td>x</td>
+                                        <td>{totEwVoluntaryExit1}</td>
+                                        <td>{totEwVoluntaryExit2}</td>
+                                        <td>{totEwVoluntaryExitImpact}</td>
                                     </tr>
                                     <tr>
                                         <td className="leftTH">Average Turnover Cost per Voluntary Exit</td>
-                                        <td>{this.state.inputs.avgTurnoverCostVoluntaryExit}
+                                        <td>${this.state.inputs.avgTurnoverCostVoluntaryExit}
                                         {/* <input className="tableInput" ref="avgTurnoverCostVoluntaryExit" placeholder="$0.00" type="currency"></input> */}
                                         </td>
-                                        <td>{this.state.inputs.avgTurnoverCostVoluntaryExit}</td>
-                                        <td>{this.state.inputs.avgTurnoverCostVoluntaryExit}</td>
+                                        <td>${this.state.inputs.avgTurnoverCostVoluntaryExit}</td>
+                                        <td>${this.state.inputs.avgTurnoverCostVoluntaryExit}</td>
                                         <td></td>
                                     </tr>
                                     <tr>
@@ -129,7 +146,8 @@ class UserView extends Component {
                     <div className="row">
                         <div className="col-md-12">
                             <div id="midTableInput">
-                            <p id="midTableInput">Product Reduces Turnover By:</p><input type="percentage" placeholder="0" className="tableInput" ref="productTurnoverSavings"></input>
+                            <p id="midTableInput" value=".1">Product Reduces Turnover By:</p>
+                            <input type="percentage" placeholder="0" className="tableInput" ref="productTurnoverSavings" value=".1"></input>
                             </div>
                             <br />
                             <table id="midTable">
@@ -138,15 +156,15 @@ class UserView extends Component {
                                         <td>Overall Employee Turnover</td>
                                         <td>12.6%</td>
                                         <td>12.6%</td>
-                                        <td>{this.state.overallEmployeeTurnoverPlusOne}</td>
-                                        <td>{this.state.impactOverallEmployeeTurnoverPlusOne}</td>
+                                        <td>{overallEmployeeTurnover2}%</td>
+                                        <td>{overallEmployeeTurnoverImpact}%</td>
                                     </tr>
                                     <tr>
                                         <td>Total Employee Turnover Costs</td>
-                                        <td>$</td>
-                                        <td>$</td>
-                                        <td>$</td>
-                                        <td>$</td>
+                                        <td>${totEmployeeTurnoverCost}</td>
+                                        <td>${totEmployeeTurnoverCost1}</td>
+                                        <td>${totEmployeeTurnoverCost2}</td>
+                                        <td>${totEmployeeTurnoverCostImpact}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -158,24 +176,24 @@ class UserView extends Component {
                                 <tbody>
                                     <tr>
                                         <th className="leftTH">Recruiting Cost Savings</th>
-                                        <th>{this.state.tableYear}</th>
-                                        <th>{this.state.tableYearPlusOne}</th>
-                                        <th>{this.state.tableYearPlusOne}</th>
+                                        <th>{}FY - 2018</th>
+                                        <th>{}FY - 2019</th>
+                                        <th>{}FY - 2019</th>
                                         <th className="impactTH">IMPACT</th>
                                     </tr>
                                     <tr className="smallTR">
                                         <td></td>
-                                        <td></td>
+                                        <td>Client As Is</td>
                                         <td>Without Ex. Company</td>
                                         <td>With Ex. Company</td>
                                         <td>Due to Ex. Company</td>
                                     </tr>
                                     <tr>
                                         <td className="leftTH">New Hires</td>
-                                        <td>x</td>
-                                        <td>x</td>
-                                        <td>x</td>
-                                        <td>x</td>
+                                        <td>{newHires}</td>
+                                        <td>{newHires1}</td>
+                                        <td>{newHires1}</td>
+                                        <td></td>
                                     </tr>
                                     <tr>
                                         <td className="leftTH">Average Days from Job Posting to Offer Acceptance</td>
@@ -183,15 +201,15 @@ class UserView extends Component {
                                         {/* <input className="tableInput" ref="avgDaysPostingToAccept" placeholder="0"></input> */}
                                         </td>
                                         <td>{this.state.inputs.avgDaysPostingToAccept}</td>
-                                        <td>x</td>
-                                        <td>x</td>
+                                        <td>{avgDaysPostingToAccept2}</td>
+                                        <td>{avgDaysPostingToAcceptImpact}</td>
                                     </tr>
                                     <tr>
                                         <td className="leftTH">Total Recruiting Expenses</td>
-                                        <td>{this.state.inputs.totRecruitingExpenses}
+                                        <td>${this.state.inputs.totRecruitingExpenses}
                                         {/* <input type="currancy" className="tableInput" ref="totRecruitingExpenses" placeholder="$0.00"></input> */}
                                         </td>
-                                        <td>x</td>
+                                        <td>${totRecruitingExpenses1}</td>
                                         <td>x</td>
                                         <td>x</td>
                                     </tr>
@@ -216,8 +234,8 @@ class UserView extends Component {
                                 <tbody>
                                     <tr>
                                         <td>Recruiting Cost per Hire</td>
-                                        <td>%</td>
-                                        <td>%</td>
+                                        <td>${recruitingCostPerHire}</td>
+                                        <td>${recruitingCostPerHire}</td>
                                         <td>%</td>
                                         <td>%</td>
                                     </tr>
@@ -254,7 +272,7 @@ class UserView extends Component {
                                         </tr>
                                         <tr className="smallTR">
                                             <td></td>
-                                            <td></td>
+                                            <td>Client As Is</td>
                                             <td>Without Ex. Company</td>
                                             <td>With Ex. Company</td>
                                             <td>Due to Ex. Company</td>
@@ -324,7 +342,7 @@ class UserView extends Component {
                                         </tr>
                                         <tr className="smallTR">
                                             <td></td>
-                                            <td></td>
+                                            <td>Client As Is</td>
                                             <td>Without Ex. Company</td>
                                             <td>With Ex. Company</td>
                                             <td>Due to Ex. Company</td>
