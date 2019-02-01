@@ -109,7 +109,9 @@ table {
     text-align: right;
     font-size: 11px;
     margin-right: 500px;
-
+}
+td {
+    text-align: right;
 }
 
 .midTable {
